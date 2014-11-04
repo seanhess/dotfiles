@@ -33,8 +33,15 @@ Bundle 'mattn/gist-vim'
 
 Bundle 'chriskempson/tomorrow-theme', {'rtp': 'vim/'}
 Bundle 'nanotech/jellybeans.vim'
-" Bundle 'bling/vim-airline'
+Bundle 'bling/vim-airline'
 Bundle 'vim-scripts/gitignore'
+Bundle 'pangloss/vim-javascript'
+
+" Clojure
+Bundle 'guns/vim-clojure-static'
+Bundle 'tpope/vim-fireplace'
+Bundle 'kien/rainbow_parentheses.vim'
+Bundle 'guns/vim-clojure-highlight'
 
 " Bundle 'ervandew/supertab'
 " Bundle 'ton/vim-bufsurf'
@@ -66,8 +73,8 @@ set hlsearch
 set incsearch                   "will move to your search match immediately
 set scrolloff=5                 "start scrolling 5 from the bottom"
 set expandtab
-set tabstop=4
-set shiftwidth=4
+set tabstop=2
+set shiftwidth=2
 "set showmatch
 hi MatchParen ctermbg=blue guibg=blue
 set number
@@ -80,6 +87,7 @@ set shiftround " multiple tabbing with '>'
 set title "changes terminal's title
 set nofoldenable " disable folding
 set clipboard=unnamed "copy to the system clipboard"
+set mouse=niv "mouse stuff
 
 " load local .vimrc files from directory. Disable insecure stuff"
 set exrc
@@ -176,17 +184,17 @@ set hidden
 " nmap <leader>T :enew<cr>
 
 " Move to the next buffer
-nmap <leader>l :bnext<CR>
+" nmap <leader>l :bnext<CR>
 
 " Move to the previous buffer
-nmap <leader>h :bprevious<CR>
+" nmap <leader>h :bprevious<CR>
 
 " Close the current buffer and move to the previous one
 " This replicates the idea of closing a tab
 " nmap <leader>bq :bp <BAR> bd #<CR>
 
 " Show all open buffers and their status
-nmap <leader>bl :ls<CR>
+" nmap <leader>bl :ls<CR>
 
 " quit buffer
 nmap <leader>q :bd<cr>
@@ -236,7 +244,26 @@ nnoremap <Leader>b :CtrlPBuffer<CR>
 nnoremap <Leader>m :CtrlPMRU<CR>
 
 
+" CLOJURE ---------------------------------------------
+
+" rainbow parentheses
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces
+let g:rbpt_max = 16
+let g:rbpt_loadcmd_toggle = 0
+
+
 " BINDINGS --------------------------------------------
 " see .gvimrc for macvim bindings
 
+
+
+" CURSOR ---------------------------------------------
+
+if $TERM_PROGRAM =~ "iTerm"
+  let &t_SI = "\<Esc>]50;CursorShape=1\x7" " Vertical bar in insert mode
+  let &t_EI = "\<Esc>]50;CursorShape=0\x7" " Block in normal mode
+endif
 
