@@ -9,12 +9,16 @@ map <D-o> :CtrlP<CR>
 map <D-p> <Nop>
 map <D-P> <Nop>
 
+" map <D-w> :<C-U>bd<CR>
+" nmap <D-w> :hide<CR>
+
 " Tree stuff
-nmap <D-J> :NERDTreeFind<CR>
-nmap <D-E> :NERDTreeToggle<CR>
+" use '-' instead. It focuses the file you are in
+" nmap <D-J> :NERDTreeFind<CR>
+nmap <D-E> :edit .<CR>
 
 " ack
-nmap <D-F> :Ack<space>
+nmap <D-F> :Ag<space>
 
 " run coffeescript
 " nnoremap <D-r> :!coffee %<CR>
