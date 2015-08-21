@@ -155,8 +155,9 @@ map Q <Nop>
 map <C-s> :w<CR>
 imap <C-s> <Esc>:w<CR>
 
-map <leader>/ <plug>NERDCommenterToggle
-imap <leader>/ <Esc><plug>NERDCommenterToggle i
+nmap <leader>/ <plug>NERDCommenterToggle
+vmap <leader>/ <plug>NERDCommenterToggle
+
 
 " Random stuff ------------------------------------------------------------
 
@@ -367,7 +368,6 @@ endif
 
 " for neovim:
 :let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
-
 
 
 " NERDCOmmenter ----------------------------------------

@@ -1,2 +1,1 @@
-set rtp+=~/.vim/bundle/vundle/
-source vimrc
+source .vimrc
