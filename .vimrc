@@ -4,10 +4,7 @@
 " TIPS -----------------------------------------------
 " open project folders with "mvim" not "mvim ." because it does that stupid nerdtree thing
 
-" VUNDLE
-set nocompatible
-filetype off
-
+" vim-plug -----------------------------------------------
 call plug#begin('~/.vim/plugged')
 
 " Search
@@ -36,13 +33,14 @@ Plug 'facebook/vim-flow'
 " Plug 'lambdatoast/elm.vim'
 Plug 'ElmCast/elm-vim'
 Plug 'sjl/vitality.vim'
+" Plug 'christoomey/vim-tmux-navigator'
 
 " Themes
 Plug 'chriskempson/tomorrow-theme', {'rtp': 'vim/'}
 Plug 'nanotech/jellybeans.vim'
 
 " Autocomplete
-"Plug 'Valloric/YouCompleteMe', { 'do': './install.sh' }
+Plug 'Valloric/YouCompleteMe', { 'do': './install.sh' }
 "Plug 'Shougo/neocomplete.vim'
 
 " Haskell
@@ -72,11 +70,17 @@ Plug 'tpope/vim-unimpaired'
 
 call plug#end()
 
+set nocompatible
+
+" ----------------------------------------------------------
+
 :colorscheme jellybeans
 " call s:X("Search","f0a0c0","302028","underline","Magenta","")
 
 " -- YouCompleteMe -----------------------------------------
 
+let g:python_host_prog = '/usr/bin/python'
+let g:python3_host_prog = '/usr/bin/python3'
 
 
 
@@ -91,6 +95,8 @@ set omnifunc=syntaxcomplete#Complete
 " set autoindent
 " set copyindent
 " set smartindent
+
+set nopaste "http://stackoverflow.com/questions/4828819/vim-insert-mode-problem-remaps-imap-and-abbreviations-ab-in-vimrc-dont
 set backspace=indent,eol,start
 set hlsearch
 set incsearch                   "will move to your search match immediately
@@ -100,7 +106,8 @@ set tabstop=2
 set softtabstop=2
 set shiftwidth=2
 "set showmatch
-hi MatchParen ctermbg=blue guibg=blue
+"hi MatchParen ctermbg=blue guibg=blue
+hi MatchParen ctermfg=white ctermbg=black guifg=white guibg=#171717
 "set relativenumber
 set number
 set nolist
@@ -118,7 +125,6 @@ set mouse=a "enable mouse in all modes
 set exrc
 set secure
 
-
 " Case insensitive
 set smartcase
 set ignorecase
@@ -132,7 +138,7 @@ set textwidth=0
 set wrapmargin=0
 
 " automatically reload files when they've been changed
-:set autoread
+set autoread
 
 " Key bindings ------------------------------------------------------------
 "noremap <leader>w :hide<CR>
@@ -141,17 +147,10 @@ noremap <leader>l :lfirst<CR>
 
 nmap <C-F> :Ag<space>
 
-" c-l escapes and saves, avoid the pinky stretch
-vmap <C-l> <Esc><Cr>
-imap <C-l> <Esc>l
-map <c-l> <Esc>
-"while selecting (for use in snippets c-l cancels out)
-smap <C-l> <Esc>
-" While commanding
-cmap <C-l> <C-c>
-
 " Disable Ex Mode
 map Q <Nop>
+
+" Save with C-S
 map <C-s> :w<CR>
 imap <C-s> <Esc>:w<CR>
 
@@ -164,8 +163,6 @@ vmap <leader>/ <plug>NERDCommenterToggle
 " run node files
 " makeprg
 au filetype javascript setlocal mp=node\ %
-" au filetype coffee-script setlocal mp=coffee\ %
-" au filetype coffee setlocal mp=echo\ "not support"
 
 " disable auto-insertion of comments
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
@@ -192,6 +189,18 @@ let g:haskell_conceal_enumerations = 0
 
 
 
+
+" Elm ----------------------------------------------
+let g:elm_detailed_complete = 1
+let g:elm_make_show_warnings = 0
+let g:elm_make_output_file = "elm.js"
+let g:elm_jump_to_error = 1
+au FileType elm nmap <C-b> <Plug>(elm-make)
+
+au FileType elm map <C-s> :w<CR> <Plug>(elm-make)
+au FileType elm vmap <C-s> :w<CR> <Plug>(elm-make)
+au FileType elm imap <C-s> <Esc>:w<CR> <Plug>(elm-make)
+au FileType elm noremap <silent> <leader>e :ElmErrorDetail<CR>
 
 
 " Syntastic ------------------------------------------
@@ -225,7 +234,9 @@ let g:syntastic_haskell_checkers = ['hdevtools']
 "let g:syntastic_error_symbol = "✗"
 "let g:syntastic_warning_symbol = "B"
 
-noremap <silent> <leader>e :Errors<CR>
+let g:syntastic_purescript_checkers = ['pulp']
+
+"noremap <silent> <leader>e :Errors<CR>
 
 " QuickFix Window Stuff?
 " https://github.com/raytracer/typescript-vim
@@ -254,16 +265,17 @@ let NERDTreeAutoDeleteBuffer = 1    "don't ask to delete buffer after move
 
 " VINEGAR -----------------------------------------------
 
-
+  
 " SPLITS --------------------------------------------
 set splitbelow
 set splitright
 
 " Easy window navigation
-map <C-h> <C-w>h
-map <C-j> <C-w>j
-map <C-k> <C-w>k
-map <C-l> <C-w>l
+noremap <C-h> <C-w>h
+noremap <C-j> <C-w>j
+noremap <C-k> <C-w>k
+noremap <C-l> <C-w>l
+"noremap <leader>o :only<CR>
 
 " <C-w>s horizontal split
 " <C-w>v vertical split
@@ -346,10 +358,12 @@ noremap <Leader>m :<C-U> CtrlPMRU<CR>
 " CLOJURE ---------------------------------------------
 
 " rainbow parentheses
-au VimEnter * RainbowParenthesesToggle
-au Syntax * RainbowParenthesesLoadRound
-au Syntax * RainbowParenthesesLoadSquare
-au Syntax * RainbowParenthesesLoadBraces
+if exists(":RainbowParenthesesToggle")
+  au VimEnter * RainbowParenthesesToggle
+  au Syntax * RainbowParenthesesLoadRound
+  au Syntax * RainbowParenthesesLoadSquare
+  au Syntax * RainbowParenthesesLoadBraces
+endif
 let g:rbpt_max = 16
 let g:rbpt_loadcmd_toggle = 0
 
@@ -373,20 +387,20 @@ endif
 " NERDCOmmenter ----------------------------------------
 
 let g:NERDCustomDelimiters = {
-    \ 'haskell': { 'left': '--' },
-    \ 'elm': { 'left': '--' },
-    \ 'purescript': { 'left': '--' },
+    \ 'haskell': { 'left': '-- ' },
+    \ 'elm': { 'left': '-- ' },
+    \ 'purescript': { 'left': '-- ' },
     \ }
 
 
 " Tabularize -------------------------------------------
 
-"if exists(":Tabularize")
-nmap <Leader>a= :Tabularize /=<CR>
-vmap <Leader>a= :Tabularize /=<CR>
-nmap <Leader>a: :Tabularize /:\zs<CR>
-vmap <Leader>a: :Tabularize /:\zs<CR>
-"endif
+if exists(":Tabularize")
+  nmap <Leader>a= :Tabularize /=<CR>
+  vmap <Leader>a= :Tabularize /=<CR>
+  nmap <Leader>a: :Tabularize /:\zs<CR>
+  vmap <Leader>a: :Tabularize /:\zs<CR>
+endif
 
 " Update Search Highlighting"
 ":hi Search guibg='#61404D' guifg='NONE' gui='NONE'

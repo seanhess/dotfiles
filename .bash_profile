@@ -45,7 +45,8 @@ source ~/.aws_auth
 
 #alias mocha="node_modules/.bin/mocha -R spec --compilers coffee:coffee-script"
 
-export PS1="\W $ "
+#export PS1="\W $ "
+export PS1="\[\e[1;32m\]\W \$\[\e[0m\] "
 #export PS1="> "
 
 # Setting PATH for Python 2.7
