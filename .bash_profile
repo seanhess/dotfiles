@@ -29,6 +29,7 @@ alias gco='git co'
 alias gci='git ci'
 alias grb='git rb'
 alias vim='/Applications/MacVim.app/Contents/MacOS/Vim'
+alias postgres='/usr/local/bin/postgres -D /usr/local/var/postgres'
 #alias inkscape="/Applications/Inkscape.app/Contents/Resources/bin/inkscape"
 
 source ~/bin/services.sh
@@ -66,3 +67,6 @@ export DOCKER_TLS_VERIFY=1
 # eval "$( HALCYON_NO_SELF_UPDATE=1 "/app/halcyon/halcyon" paths )"
 
 export NODE_REPL_HISTORY_FILE=/Users/seanhess/.node_history
+
+# added by Miniconda2 3.19.0 installer
+export PATH="/Users/seanhess/miniconda2/bin:$PATH"

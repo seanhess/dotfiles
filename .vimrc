@@ -40,17 +40,16 @@ Plug 'chriskempson/tomorrow-theme', {'rtp': 'vim/'}
 Plug 'nanotech/jellybeans.vim'
 
 " Autocomplete
-Plug 'Valloric/YouCompleteMe', { 'do': './install.sh' }
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
 "Plug 'Shougo/neocomplete.vim'
 
 " Haskell
 Plug 'dag/vim2hs'
 Plug 'eagletmt/neco-ghc'
-Plug 'Shougo/vimproc.vim'
+"Plug 'Shougo/vimproc.vim', { 'do': 'make' }
 "Plug 'eagletmt/ghcmod-vim'
 
 Plug 'bitc/vim-hdevtools'
-"Plug 'eagletmt/neco-ghc'
 
 " Purescript
 Plug 'raichoo/purescript-vim'
@@ -176,8 +175,11 @@ au filetype coffee setlocal shiftwidth=2
 "let g:haddock_browser="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
 
 autocmd FileType haskell map <leader>t :HdevtoolsType<CR>
+autocmd FileType haskell map <leader>T :HdevtoolsClear<CR>
 
-let g:ycm_semantic_triggers = {'haskell' : ['.']}
+"let g:haskellmode_completion_ghc = 0
+"autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
+"let g:ycm_semantic_triggers = {'haskell' : ['.']}
 "let g:necoghc_debug = 1
 "let g:necoghc_enable_detailed_browse = 1
 hi clear Conceal
@@ -192,16 +194,18 @@ let g:haskell_conceal_enumerations = 0
 
 " Elm ----------------------------------------------
 let g:elm_detailed_complete = 1
-let g:elm_make_show_warnings = 0
+"let g:elm_make_show_warnings = 1
 let g:elm_make_output_file = "elm.js"
-let g:elm_jump_to_error = 1
+let g:elm_jump_to_error = 0
 au FileType elm nmap <C-b> <Plug>(elm-make)
 
-au FileType elm map <C-s> :w<CR> <Plug>(elm-make)
-au FileType elm vmap <C-s> :w<CR> <Plug>(elm-make)
-au FileType elm imap <C-s> <Esc>:w<CR> <Plug>(elm-make)
+"au FileType elm map <C-s> :w<CR> <Plug>(elm-make)
+"au FileType elm vmap <C-s> :w<CR> <Plug>(elm-make)
+"au FileType elm imap <C-s> <Esc>:w<CR> <Plug>(elm-make)
 au FileType elm noremap <silent> <leader>e :ElmErrorDetail<CR>
 
+"au BufWritePost *.elm ElmMakeMain
+":au! BufWritePost *.elm
 
 " Syntastic ------------------------------------------
 
@@ -226,8 +230,9 @@ let g:flow#enable = 0
 let g:syntastic_aggregate_errors = 1
 " check syntax on file open
 let g:syntastic_haskell_ghc_mod_args = '-g -fno-warn-missing-signatures'
-"let g:syntastic_haskell_checkers = ['hdevtools', 'hlint']
 let g:syntastic_haskell_checkers = ['hdevtools']
+let g:syntastic_haskell_hdevtools_args = '-g-Wall -g-fno-warn-missing-signatures'
+"let g:syntastic_haskell_checkers = ['ghc_mod', 'hlint'] 
 " Jump to the first error
 "let g:syntastic_auto_jump = 3
 
@@ -307,7 +312,6 @@ set hidden
 " nmap <leader>bl :ls<CR>
 
 " quit buffer
-noremap <leader>q :<C-U>bd<cr>
 noremap <leader>q :<C-U>bd<cr>
 
 " new buffer
