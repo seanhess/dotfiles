@@ -12,14 +12,13 @@ Plug 'mileszs/ack.vim'
 Plug 'rking/ag.vim'
 
 Plug 'kien/ctrlp.vim'
-"Plug 'tpope/vim-vinegar'
 Plug 'scrooloose/nerdtree'
 Plug 'dhruvasagar/vim-vinegar'
 Plug 'kchmck/vim-coffee-script'
 Plug 'tpope/vim-markdown'
 Plug 'wavded/vim-stylus'
 Plug 'tpope/vim-surround'
-Plug 'scrooloose/nerdcommenter'
+Plug 'tpope/vim-commentary'
 Plug 'scrooloose/syntastic'
 Plug 'tpope/vim-fugitive'
 Plug 'mattn/webapi-vim'
@@ -30,25 +29,21 @@ Plug 'pangloss/vim-javascript'
 Plug 'godlygeek/tabular'
 Plug 'leafgarland/typescript-vim'
 Plug 'facebook/vim-flow'
-" Plug 'lambdatoast/elm.vim'
 Plug 'ElmCast/elm-vim'
 Plug 'sjl/vitality.vim'
-" Plug 'christoomey/vim-tmux-navigator'
 
 " Themes
 Plug 'chriskempson/tomorrow-theme', {'rtp': 'vim/'}
 Plug 'nanotech/jellybeans.vim'
 
 " Autocomplete
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
+Plug 'ervandew/supertab'
+" Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
 "Plug 'Shougo/neocomplete.vim'
 
 " Haskell
 Plug 'dag/vim2hs'
 Plug 'eagletmt/neco-ghc'
-"Plug 'Shougo/vimproc.vim', { 'do': 'make' }
-"Plug 'eagletmt/ghcmod-vim'
-
 Plug 'bitc/vim-hdevtools'
 
 " Purescript
@@ -59,7 +54,9 @@ Plug 'guns/vim-clojure-static'
 Plug 'tpope/vim-fireplace'
 Plug 'kien/rainbow_parentheses.vim'
 Plug 'guns/vim-clojure-highlight'
-Plug 'tpope/vim-unimpaired'
+Plug 'kovisoft/paredit'
+Plug 'venantius/vim-cljfmt'
+" Plug 'tpope/vim-unimpaired'
 
 " Plug 'ervandew/supertab'
 " Plug 'ton/vim-bufsurf'
@@ -144,7 +141,9 @@ set autoread
 noremap <leader>w <C-w>c<CR>
 noremap <leader>l :lfirst<CR>
 
+
 nmap <C-F> :Ag<space>
+nmap Ï :Ag<space>
 
 " Disable Ex Mode
 map Q <Nop>
@@ -153,8 +152,22 @@ map Q <Nop>
 map <C-s> :w<CR>
 imap <C-s> <Esc>:w<CR>
 
-nmap <leader>/ <plug>NERDCommenterToggle
-vmap <leader>/ <plug>NERDCommenterToggle
+" Save with Cmd-S
+map ß :w<CR>
+imap ß <Esc>:w<CR>
+
+" Comments
+"nmap <leader>/ <plug>NERDCommenterToggle
+"vmap <leader>/ <plug>NERDCommenterToggle
+
+"nmap ÷ <plug>NERDCommenterToggle
+"vmap ÷ <plug>NERDCommenterToggle
+
+nmap <leader>/ :Commentary<CR>
+vmap <leader>/ :Commentary<CR>
+
+nmap ÷ :Commentary<CR>
+vmap ÷ :Commentary<CR>
 
 
 " Random stuff ------------------------------------------------------------
@@ -193,10 +206,13 @@ let g:haskell_conceal_enumerations = 0
 
 
 " Elm ----------------------------------------------
-let g:elm_detailed_complete = 1
-"let g:elm_make_show_warnings = 1
-let g:elm_make_output_file = "elm.js"
 let g:elm_jump_to_error = 0
+let g:elm_make_output_file = "elm.js"
+let g:elm_make_show_warnings = 0
+let g:elm_browser_command = ""
+let g:elm_detailed_complete = 1
+let g:elm_format_autosave = 0
+
 au FileType elm nmap <C-b> <Plug>(elm-make)
 
 "au FileType elm map <C-s> :w<CR> <Plug>(elm-make)
@@ -353,6 +369,7 @@ let g:ctrlp_use_caching = 0
     "\ }
 "let g:ctrlp_dont_split = 'NERD_tree_2'
 
+noremap ø :<C-U> CtrlP<CR>
 noremap <Leader>o :<C-U> CtrlP<CR>
 noremap <Leader>p :<C-U> CtrlP<CR>
 noremap <Leader>b :<C-U> CtrlPBuffer<CR>
@@ -362,14 +379,35 @@ noremap <Leader>m :<C-U> CtrlPMRU<CR>
 " CLOJURE ---------------------------------------------
 
 " rainbow parentheses
-if exists(":RainbowParenthesesToggle")
-  au VimEnter * RainbowParenthesesToggle
-  au Syntax * RainbowParenthesesLoadRound
-  au Syntax * RainbowParenthesesLoadSquare
-  au Syntax * RainbowParenthesesLoadBraces
-endif
-let g:rbpt_max = 16
+au VimEnter * RainbowParenthesesActivate
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces
+
+let g:rbpt_max = 15
 let g:rbpt_loadcmd_toggle = 0
+let g:rbpt_colorpairs = [
+    \ ['brown',       'RoyalBlue3'],
+    \ ['Darkblue',    'SeaGreen3'],
+    \ ['darkgray',    'DarkOrchid3'],
+    \ ['darkgreen',   'firebrick3'],
+    \ ['darkcyan',    'RoyalBlue3'],
+    \ ['darkred',     'SeaGreen3'],
+    \ ['darkmagenta', 'DarkOrchid3'],
+    \ ['brown',       'firebrick3'],
+    \ ['gray',        'RoyalBlue3'],
+    \ ['darkmagenta', 'DarkOrchid3'],
+    \ ['Darkblue',    'firebrick3'],
+    \ ['darkgreen',   'RoyalBlue3'],
+    \ ['darkcyan',    'SeaGreen3'],
+    \ ['darkred',     'DarkOrchid3'],
+    \ ['red',         'firebrick3'],
+    \ ]
+
+    " can't see black!
+    " \ ['black',       'SeaGreen3'],
+
+let g:clj_fmt_autosave = 0
 
 
 " BINDINGS --------------------------------------------
@@ -388,13 +426,16 @@ endif
 :let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 
 
-" NERDCOmmenter ----------------------------------------
+" Comments ----------------------------------------
 
 let g:NERDCustomDelimiters = {
     \ 'haskell': { 'left': '-- ' },
     \ 'elm': { 'left': '-- ' },
     \ 'purescript': { 'left': '-- ' },
     \ }
+
+autocmd FileType haskell setlocal commentstring=--\ %s
+autocmd FileType elm setlocal commentstring=--\ %s
 
 
 " Tabularize -------------------------------------------

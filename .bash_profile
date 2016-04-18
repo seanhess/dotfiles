@@ -41,8 +41,6 @@ source ~/.bash_private
 
 source ~/.nvm/nvm.sh
 
-source ~/.aws_auth
-
 
 #alias mocha="node_modules/.bin/mocha -R spec --compilers coffee:coffee-script"
 
@@ -70,3 +68,7 @@ export NODE_REPL_HISTORY_FILE=/Users/seanhess/.node_history
 
 # added by Miniconda2 3.19.0 installer
 export PATH="/Users/seanhess/miniconda2/bin:$PATH"
+
+if [ -f `brew --prefix`/etc/bash_completion ]; then
+    . `brew --prefix`/etc/bash_completion
+fi
