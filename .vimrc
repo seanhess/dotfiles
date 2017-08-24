@@ -9,13 +9,12 @@ call plug#begin('~/.vim/plugged')
 
 " Search
 Plug 'mileszs/ack.vim'
-Plug 'rking/ag.vim'
 
 Plug 'kien/ctrlp.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'dhruvasagar/vim-vinegar'
 Plug 'kchmck/vim-coffee-script'
-Plug 'tpope/vim-markdown'
+Plug 'plasticboy/vim-markdown'
 Plug 'wavded/vim-stylus'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
@@ -56,6 +55,7 @@ Plug 'kien/rainbow_parentheses.vim'
 Plug 'guns/vim-clojure-highlight'
 Plug 'kovisoft/paredit'
 Plug 'venantius/vim-cljfmt'
+
 " Plug 'tpope/vim-unimpaired'
 
 " Plug 'ervandew/supertab'
@@ -63,6 +63,8 @@ Plug 'venantius/vim-cljfmt'
 " Plug 'shemerey/vim-peepopen'
 " Plug 'spolu/dwm.vim'
 " Plug 'vim-scripts/Conque-Shell'
+
+Plug 'vimwiki/vimwiki'
 
 call plug#end()
 
@@ -92,6 +94,7 @@ set omnifunc=syntaxcomplete#Complete
 " set copyindent
 " set smartindent
 
+" set conceallevel=0
 set nopaste "http://stackoverflow.com/questions/4828819/vim-insert-mode-problem-remaps-imap-and-abbreviations-ab-in-vimrc-dont
 set backspace=indent,eol,start
 set hlsearch
@@ -114,7 +117,7 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip,node_modules,*.hi,*.o,cabal-dev/,dist/,
 set shiftround " multiple tabbing with '>'
 set title "changes terminal's title
 set nofoldenable " disable folding
-set clipboard=unnamed "copy to the system clipboard"
+set clipboard=unnamedplus "copy to the system clipboard"
 set mouse=a "enable mouse in all modes
 
 " load local .vimrc files from directory. Disable insecure stuff"
@@ -136,14 +139,31 @@ set wrapmargin=0
 " automatically reload files when they've been changed
 set autoread
 
+" make status line higher so it never does that annoying prompt thing
+set cmdheight=2
+" set shortmess=a
+
+
 " Key bindings ------------------------------------------------------------
+" when you paste, reyank any text that is pasted
+xnoremap p pgvy
+
+" nnoremap y "xy
+" vnoremap y "xy
+nnoremap c "_c
+vnoremap c "_c
+nnoremap C "_C
+vnoremap C "_C
+
 "noremap <leader>w :hide<CR>
 noremap <leader>w <C-w>c<CR>
 noremap <leader>l :lfirst<CR>
 
+noremap <leader>w <C-w>c<CR>
 
-nmap <C-F> :Ag<space>
-nmap Ï :Ag<space>
+
+nmap <C-F> :Ack!<space>
+nmap Ï :Ack!<space>
 
 " Disable Ex Mode
 map Q <Nop>
@@ -169,6 +189,13 @@ vmap <leader>/ :Commentary<CR>
 nmap ÷ :Commentary<CR>
 vmap ÷ :Commentary<CR>
 
+" Ack / Project Search --------------------------------------------------
+
+" Note: this will ignore .gitignore and .agignore
+if executable('ag')
+  let g:ackprg = 'ag --vimgrep'
+endif
+
 
 " Random stuff ------------------------------------------------------------
 
@@ -187,8 +214,11 @@ au filetype coffee setlocal shiftwidth=2
 "au filetype haskell setlocal omnifunc=necoghc#omnifunc
 "let g:haddock_browser="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
 
-autocmd FileType haskell map <leader>t :HdevtoolsType<CR>
-autocmd FileType haskell map <leader>T :HdevtoolsClear<CR>
+autocmd FileType haskell nnoremap <leader>t :SyntasticCheck<CR>
+autocmd FileType haskell nnoremap <C-t> :SyntasticCheck<CR>
+" autocmd FileType haskell :Syntastic
+
+let g:hdevtools_options = '-g-Wall'
 
 "let g:haskellmode_completion_ghc = 0
 "autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
@@ -212,6 +242,7 @@ let g:elm_make_show_warnings = 0
 let g:elm_browser_command = ""
 let g:elm_detailed_complete = 1
 let g:elm_format_autosave = 0
+let g:elm_syntastic_show_warnings = 1
 
 au FileType elm nmap <C-b> <Plug>(elm-make)
 
@@ -230,8 +261,12 @@ set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
+let g:syntastic_mode_map = { "mode":"active", "active_filetypes": [], "passive_filetypes": [] }
+
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
+" put the error under the cursor in the command window
+" let g:syntastic_echo_current_error = 0
 let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
 
@@ -247,7 +282,9 @@ let g:syntastic_aggregate_errors = 1
 " check syntax on file open
 let g:syntastic_haskell_ghc_mod_args = '-g -fno-warn-missing-signatures'
 let g:syntastic_haskell_checkers = ['hdevtools']
-let g:syntastic_haskell_hdevtools_args = '-g-Wall -g-fno-warn-missing-signatures'
+" let g:syntastic_haskell_checkers = []
+" let g:syntastic_haskell_hdevtools_args = '-g -Wall -g -fno-warn-missing-signatures'
+let g:syntastic_haskell_hdevtools_args = '-g -Wall'
 "let g:syntastic_haskell_checkers = ['ghc_mod', 'hlint'] 
 " Jump to the first error
 "let g:syntastic_auto_jump = 3
@@ -281,6 +318,8 @@ highlight EOLWS ctermbg=red guibg=red
 "let NERDTreeIgnore = ['\.hi$', '\.o$', 'dist', 'cabal-dev', 'node_modules', '\.xcodeproj', '\.xcworkspace', 'Pods', '\.DS_Store$', '\.git']
 let NERDTreeShowHidden=1
 let NERDTreeAutoDeleteBuffer = 1    "don't ask to delete buffer after move
+let NERDTreeRespectWildIgnore=1
+" let NERDTreeSortOrder=[]
 "let NERDTreeQuitOnOpen=1
 "let NERDTreeHijackNetrw=1
 
@@ -328,7 +367,9 @@ set hidden
 " nmap <leader>bl :ls<CR>
 
 " quit buffer
-noremap <leader>q :<C-U>bd<cr>
+noremap <leader>q :<C-U>bd!<cr>
+noremap <leader>q :<C-U>bd!<cr>
+noremap <C-q> :<C-U>bd!<cr>
 
 " new buffer
 noremap <leader>n :<C-U>enew<cr>
@@ -450,3 +491,24 @@ endif
 " Update Search Highlighting"
 ":hi Search guibg='#61404D' guifg='NONE' gui='NONE'
 "call s:X("Search","f0a0c0","302028","underline","Magenta","")
+
+
+" VimWiki ------------------------------------------------
+
+  let g:vimwiki_list = [{ 'path': '~/vimwiki/',
+                        \ 'syntax': 'markdown', 'ext': '.md',
+                        \ 'nested_syntaxes': {
+                        \   'ruby': 'ruby',
+                        \   'elixir': 'elixir',
+                        \   'javascript': 'javascript',
+                        \   'bash': 'sh'
+                        \  }}]
+
+
+let g:vimwiki_url_maxsave=10000
+
+" Markdown -----------------------------------------------
+
+" let g:vim_markdown_conceal=0
+" set conceallevel=0
+

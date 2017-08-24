@@ -41,4 +41,4 @@ imap <D-/> <Esc><plug>NERDCommenterToggle i
 
 
 
-
+map <D-b> :SyntasticCheck<CR>
