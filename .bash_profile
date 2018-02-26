@@ -32,7 +32,7 @@ alias gci='git ci'
 alias grb='git rb'
 alias vim='/Applications/MacVim.app/Contents/MacOS/Vim'
 alias postgres='/usr/local/bin/postgres -D /usr/local/var/postgres'
-alias woot="stack exec --no-ghc-package-path hdevtools --"
+alias kh="killall hdevtools"
 #alias inkscape="/Applications/Inkscape.app/Contents/Resources/bin/inkscape"
 
 source ~/bin/services.sh

@@ -18,7 +18,8 @@ Plug 'plasticboy/vim-markdown'
 Plug 'wavded/vim-stylus'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
-Plug 'scrooloose/syntastic'
+" Plug 'scrooloose/syntastic'
+Plug 'w0rp/ale'
 Plug 'tpope/vim-fugitive'
 Plug 'mattn/webapi-vim'
 Plug 'mattn/gist-vim'
@@ -30,6 +31,7 @@ Plug 'leafgarland/typescript-vim'
 Plug 'facebook/vim-flow'
 Plug 'ElmCast/elm-vim'
 Plug 'sjl/vitality.vim'
+Plug 'Chiel92/vim-autoformat'
 
 " Themes
 Plug 'chriskempson/tomorrow-theme', {'rtp': 'vim/'}
@@ -43,7 +45,7 @@ Plug 'ervandew/supertab'
 " Haskell
 Plug 'dag/vim2hs'
 Plug 'eagletmt/neco-ghc'
-Plug 'bitc/vim-hdevtools'
+" Plug 'bitc/vim-hdevtools'
 
 " Purescript
 Plug 'raichoo/purescript-vim'
@@ -69,6 +71,14 @@ Plug 'vimwiki/vimwiki'
 call plug#end()
 
 set nocompatible
+
+
+" -- ale --------------------------------------------------
+let g:ale_linters = {
+\   'haskell': ['stack-ghc']
+\}
+let g:airline#extensions#ale#enabled = 1
+nmap <silent> <C-e> <Plug>(ale_next_wrap)
 
 " ----------------------------------------------------------
 
@@ -257,9 +267,9 @@ au FileType elm noremap <silent> <leader>e :ElmErrorDetail<CR>
 " Syntastic ------------------------------------------
 
 " Recommended default settings
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+" set statusline+=%#warningmsg#
+" set statusline+=%{SyntasticStatuslineFlag()}
+" set statusline+=%*
 
 let g:syntastic_mode_map = { "mode":"active", "active_filetypes": [], "passive_filetypes": [] }
 
@@ -302,6 +312,7 @@ let g:syntastic_purescript_checkers = ['pulp']
 " autocmd QuickFixCmdPost    l* nested lwindow
 
 " awesome command to compile typescript stuff
+ autocmd FileType typescript :set makeprg=tsc
 " :silent make % | cwindow
 
 "let g:flow#autoclose = 1
