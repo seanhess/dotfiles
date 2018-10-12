@@ -75,7 +75,7 @@ set nocompatible
 
 " -- ale --------------------------------------------------
 let g:ale_linters = {
-\   'haskell': ['stack-ghc']
+\   'haskell': ['hdevtools']
 \}
 let g:airline#extensions#ale#enabled = 1
 nmap <silent> <C-e> <Plug>(ale_next_wrap)
