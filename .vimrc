@@ -58,6 +58,17 @@ Plug 'guns/vim-clojure-highlight'
 Plug 'kovisoft/paredit'
 Plug 'venantius/vim-cljfmt'
 
+
+
+
+
+
+
+
+
+" Charts
+Plug 'gyim/vim-boxdraw'
+
 " Plug 'tpope/vim-unimpaired'
 
 " Plug 'ervandew/supertab'
@@ -66,21 +77,16 @@ Plug 'venantius/vim-cljfmt'
 " Plug 'spolu/dwm.vim'
 " Plug 'vim-scripts/Conque-Shell'
 
-Plug 'vimwiki/vimwiki'
+" Plug 'vimwiki/vimwiki'
+
 
 call plug#end()
 
 set nocompatible
 
 
-" -- ale --------------------------------------------------
-let g:ale_linters = {
-\   'haskell': ['hdevtools']
-\}
-let g:airline#extensions#ale#enabled = 1
-nmap <silent> <C-e> <Plug>(ale_next_wrap)
 
-" ----------------------------------------------------------
+
 
 :colorscheme jellybeans
 " call s:X("Search","f0a0c0","302028","underline","Magenta","")
@@ -100,11 +106,12 @@ filetype plugin indent on
 filetype plugin on
 set omnifunc=syntaxcomplete#Complete
 
-" set autoindent
-" set copyindent
-" set smartindent
+" -- ascii drawing
+" https://til.hashrocket.com/posts/f80t2w1or5-making-virtualedit-a-local-option
+autocmd BufNewFile,BufRead,BufEnter *.md setlocal virtualedit+=all
+autocmd BufLeave *.md setlocal virtualedit-=all
 
-" set conceallevel=0
+
 set nopaste "http://stackoverflow.com/questions/4828819/vim-insert-mode-problem-remaps-imap-and-abbreviations-ab-in-vimrc-dont
 set backspace=indent,eol,start
 set hlsearch
@@ -127,7 +134,7 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip,node_modules,*.hi,*.o,cabal-dev/,dist/,
 set shiftround " multiple tabbing with '>'
 set title "changes terminal's title
 set nofoldenable " disable folding
-set clipboard=unnamedplus "copy to the system clipboard"
+" set clipboard=unnamedplus "copy to the system clipboard"
 set mouse=a "enable mouse in all modes
 
 " load local .vimrc files from directory. Disable insecure stuff"
@@ -156,7 +163,7 @@ set cmdheight=2
 
 " Key bindings ------------------------------------------------------------
 " when you paste, reyank any text that is pasted
-xnoremap p pgvy
+" xnoremap p pgvy
 
 " nnoremap y "xy
 " vnoremap y "xy
@@ -198,6 +205,16 @@ vmap <leader>/ :Commentary<CR>
 
 nmap ÷ :Commentary<CR>
 vmap ÷ :Commentary<CR>
+
+
+" -- ale --------------------------------------------------
+let g:ale_linters = {
+\   'haskell': ['stack-ghc']
+\}
+let g:airline#extensions#ale#enabled = 1
+nmap <silent> <C-e> <Plug>(ale_next_wrap)
+
+" ----------------------------------------------------------
 
 " Ack / Project Search --------------------------------------------------
 
@@ -336,7 +353,7 @@ let NERDTreeRespectWildIgnore=1
 
 " VINEGAR -----------------------------------------------
 
-  
+ 
 " SPLITS --------------------------------------------
 set splitbelow
 set splitright
