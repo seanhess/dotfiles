@@ -9,10 +9,14 @@ call plug#begin('~/.vim/plugged')
 
 " Search
 Plug 'mileszs/ack.vim'
-
-Plug 'kien/ctrlp.vim'
-Plug 'scrooloose/nerdtree'
-Plug 'dhruvasagar/vim-vinegar'
+" Plug 'kien/ctrlp.vim'
+Plug 'junegunn/fzf'
+" Plug 'scrooloose/nerdtree'
+" Plug 'dhruvasagar/vim-vinegar'
+" Plug 'tpope/vim-vinegar'
+Plug 'tpope/vim-eunuch'
+Plug 'jeetsukumaran/vim-buffergator'
+Plug 'justinmk/vim-dirvish'
 Plug 'kchmck/vim-coffee-script'
 Plug 'plasticboy/vim-markdown'
 Plug 'wavded/vim-stylus'
@@ -31,7 +35,11 @@ Plug 'leafgarland/typescript-vim'
 Plug 'facebook/vim-flow'
 Plug 'ElmCast/elm-vim'
 Plug 'sjl/vitality.vim'
-Plug 'Chiel92/vim-autoformat'
+" Plug 'Chiel92/vim-autoformat'
+Plug 'sbdchd/neoformat'
+
+" miniyank, fixes clipboard issues
+Plug 'bfredl/nvim-miniyank'
 
 " Themes
 Plug 'chriskempson/tomorrow-theme', {'rtp': 'vim/'}
@@ -43,8 +51,11 @@ Plug 'ervandew/supertab'
 "Plug 'Shougo/neocomplete.vim'
 
 " Haskell
-Plug 'dag/vim2hs'
-Plug 'eagletmt/neco-ghc'
+" The following weren't really doing anything
+" Plug 'dag/vim2hs'
+" Plug 'eagletmt/neco-ghc'
+Plug 'neovimhaskell/haskell-vim'
+Plug 'ndmitchell/ghcid', { 'rtp': 'plugins/nvim' }
 " Plug 'bitc/vim-hdevtools'
 
 " Purescript
@@ -67,7 +78,6 @@ Plug 'venantius/vim-cljfmt'
 
 
 " Charts
-Plug 'gyim/vim-boxdraw'
 
 " Plug 'tpope/vim-unimpaired'
 
@@ -134,7 +144,6 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip,node_modules,*.hi,*.o,cabal-dev/,dist/,
 set shiftround " multiple tabbing with '>'
 set title "changes terminal's title
 set nofoldenable " disable folding
-" set clipboard=unnamedplus "copy to the system clipboard"
 set mouse=a "enable mouse in all modes
 
 " load local .vimrc files from directory. Disable insecure stuff"
@@ -161,6 +170,11 @@ set cmdheight=2
 " set shortmess=a
 
 
+"clipboard
+set clipboard=unnamedplus "copy to the system clipboard. This setting messes up column pasting
+map p <Plug>(miniyank-autoput)
+map P <Plug>(miniyank-autoPut)
+
 " Key bindings ------------------------------------------------------------
 " when you paste, reyank any text that is pasted
 " xnoremap p pgvy
@@ -173,14 +187,16 @@ nnoremap C "_C
 vnoremap C "_C
 
 "noremap <leader>w :hide<CR>
-noremap <leader>w <C-w>c<CR>
-noremap <leader>l :lfirst<CR>
+" noremap <leader>w <C-w>c<CR>
+" noremap <leader>l :lfirst<CR>
 
-noremap <leader>w <C-w>c<CR>
+" noremap <leader>w <C-w>c<CR>
 
 
 nmap <C-F> :Ack!<space>
+map <leader>f :Ack!<space>
 nmap Ï :Ack!<space>
+map <leader>g :cnext<CR>
 
 " Disable Ex Mode
 map Q <Nop>
@@ -188,6 +204,8 @@ map Q <Nop>
 " Save with C-S
 map <C-s> :w<CR>
 imap <C-s> <Esc>:w<CR>
+map <F6> :w<CR>
+imap <F6> <Esc>:w<CR>
 
 " Save with Cmd-S
 map ß :w<CR>
@@ -207,12 +225,23 @@ nmap ÷ :Commentary<CR>
 vmap ÷ :Commentary<CR>
 
 
+" -- neoformat --------------------------------------------
+let g:neoformat_enabled_haskell = ['stylishhaskell']
+let g:neoformat_verbose = 0
+let g:buffergator_suppress_keymaps=1
+nnoremap <leader>t :Neoformat<CR>
+" unmap <leader>t 
+" augroup fmt
+"   autocmd!
+"   autocmd BufWritePre * undojoin | Neoformat
+" augroup END
+
 " -- ale --------------------------------------------------
+" \   'haskell': ['hdevtools', 'hlint']
 let g:ale_linters = {
-\   'haskell': ['stack-ghc']
+\   'haskell': []
 \}
 let g:airline#extensions#ale#enabled = 1
-nmap <silent> <C-e> <Plug>(ale_next_wrap)
 
 " ----------------------------------------------------------
 
@@ -241,8 +270,11 @@ au filetype coffee setlocal shiftwidth=2
 "au filetype haskell setlocal omnifunc=necoghc#omnifunc
 "let g:haddock_browser="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
 
-autocmd FileType haskell nnoremap <leader>t :SyntasticCheck<CR>
-autocmd FileType haskell nnoremap <C-t> :SyntasticCheck<CR>
+" autocmd FileType haskell nnoremap <leader>t :SyntasticCheck<CR>
+" autocmd FileType haskell nnoremap <C-t> :SyntasticCheck<CR>
+" autocmd FileType haskell nnoremap <silent> <C-e> :cc<CR>
+let g:haskell_indent_disable=1
+au FileType haskell noremap <silent> <leader>e :cc<CR>
 " autocmd FileType haskell :Syntastic
 
 let g:hdevtools_options = '-g-Wall'
@@ -263,20 +295,21 @@ let g:haskell_conceal_enumerations = 0
 
 
 " Elm ----------------------------------------------
-let g:elm_jump_to_error = 0
-let g:elm_make_output_file = "elm.js"
-let g:elm_make_show_warnings = 0
-let g:elm_browser_command = ""
-let g:elm_detailed_complete = 1
-let g:elm_format_autosave = 0
-let g:elm_syntastic_show_warnings = 1
+" let g:elm_jump_to_error = 0
+" let g:elm_make_output_file = "elm.js"
+" let g:elm_make_show_warnings = 0
+" let g:elm_browser_command = ""
+" let g:elm_detailed_complete = 0
+" let g:elm_format_autosave = 1
+" let g:elm_syntastic_show_warnings = 1
 
-au FileType elm nmap <C-b> <Plug>(elm-make)
+" au FileType elm nmap <C-b> <Plug>(elm-make)
 
 "au FileType elm map <C-s> :w<CR> <Plug>(elm-make)
 "au FileType elm vmap <C-s> :w<CR> <Plug>(elm-make)
 "au FileType elm imap <C-s> <Esc>:w<CR> <Plug>(elm-make)
-au FileType elm noremap <silent> <leader>e :ElmErrorDetail<CR>
+" au FileType elm noremap <silent> <leader>e :ElmErrorDetail<CR>
+au FileType elm noremap <silent> <leader>e :ALENext<CR>
 
 "au BufWritePost *.elm ElmMakeMain
 ":au! BufWritePost *.elm
@@ -324,6 +357,7 @@ let g:syntastic_purescript_checkers = ['pulp']
 "noremap <silent> <leader>e :Errors<CR>
 
 " QuickFix Window Stuff?
+
 " https://github.com/raytracer/typescript-vim
 " autocmd QuickFixCmdPost [^l]* nested cwindow
 " autocmd QuickFixCmdPost    l* nested lwindow
@@ -342,18 +376,17 @@ autocmd InsertLeave * syn clear EOLWS | syn match EOLWS excludenl /\s\+$/
 highlight EOLWS ctermbg=red guibg=red
 
 
+
+
 " NERDTree ----------------------------------------------
-"let NERDTreeIgnore = ['\.hi$', '\.o$', 'dist', 'cabal-dev', 'node_modules', '\.xcodeproj', '\.xcworkspace', 'Pods', '\.DS_Store$', '\.git']
-let NERDTreeShowHidden=1
-let NERDTreeAutoDeleteBuffer = 1    "don't ask to delete buffer after move
-let NERDTreeRespectWildIgnore=1
-" let NERDTreeSortOrder=[]
-"let NERDTreeQuitOnOpen=1
+"let NERDTreeIgnore = ['\.hi$', '\.o$', 'dist', 'cabal-dev', 'node_modules', ' \.xcodeproj', '\.xcworkspace', 'Pods', '\.DS_Store$', '\.git']
+"let NERDTreeShowHidden=1
+"let NERDTreeAutoDeleteBuffer = 1    "don't ask to delete buffer after move
+"let NERDTreeRespectWildIgnore=1
+""let NERDTreeSortOrder=[]
+""let NERDTreeQuitOnOpen=1
 "let NERDTreeHijackNetrw=1
 
-" VINEGAR -----------------------------------------------
-
- 
 " SPLITS --------------------------------------------
 set splitbelow
 set splitright
@@ -363,7 +396,7 @@ noremap <C-h> <C-w>h
 noremap <C-j> <C-w>j
 noremap <C-k> <C-w>k
 noremap <C-l> <C-w>l
-"noremap <leader>o :only<CR>
+" noremap <C-j> :join<CR>
 
 " <C-w>s horizontal split
 " <C-w>v vertical split
@@ -395,9 +428,7 @@ set hidden
 " nmap <leader>bl :ls<CR>
 
 " quit buffer
-noremap <leader>q :<C-U>bd!<cr>
-noremap <leader>q :<C-U>bd!<cr>
-noremap <C-q> :<C-U>bd!<cr>
+noremap <leader>w :<C-U>bd!<cr>
 
 " new buffer
 noremap <leader>n :<C-U>enew<cr>
@@ -415,13 +446,12 @@ let g:airline#extensions#tabline#fnamemod = ':t'
 
 " CTRLP -----------------------------------------------
 " to ignore folders, use standard vim wildignore
-" let g:ctrlp_use_caching = 0     " disable caching. Default is 1
-let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-standard', 'find %s -type f']
+" let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-standard', 'find %s -type f']
+" let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 let g:ctrlp_use_caching = 0
-"let g:ctrlp_user_command = ['.git/', 'cd %s && git ls-files --exclude-standard -co']
 "let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git\|cabal-dev\|Pods\|\.(hi\|o\|xcodeproj)$|'
 
-" let g:ctrlp_working_path_mode = 0
+let g:ctrlp_working_path_mode = 0
 " let g:ctrlp_mruf_relative = 1
 " let g:ctrlp_match_window_bottom = 0     " top of screen
 " let g:ctrlp_match_window_reversed = 0   " top first
@@ -438,11 +468,34 @@ let g:ctrlp_use_caching = 0
     "\ }
 "let g:ctrlp_dont_split = 'NERD_tree_2'
 
-noremap ø :<C-U> CtrlP<CR>
-noremap <Leader>o :<C-U> CtrlP<CR>
-noremap <Leader>p :<C-U> CtrlP<CR>
-noremap <Leader>b :<C-U> CtrlPBuffer<CR>
-noremap <Leader>m :<C-U> CtrlPMRU<CR>
+" noremap ø :<C-U> CtrlP<CR>
+" noremap <Leader>o :<C-U> CtrlP<CR>
+" noremap <Leader>p :<C-U> CtrlP<CR>
+" noremap <Leader>b :<C-U> CtrlPBuffer<CR>
+" noremap <Leader>m :<C-U> CtrlPMRU<CR>
+
+
+" FZF ---------------------------------------------
+
+" let g:fzf_action = {
+"       \ 'enter': 'split',
+"       \ 'ctrl-b': 'edit',
+"       \ 'ctrl-x': 'split',
+"       \ 'ctrl-v': 'vsplit' }
+
+noremap <Leader>p :<C-U> FZF<CR>
+
+" nnoremap <Leader>b :sba<CR>
+" nnoremap <Leader>B :only<CR>
+nnoremap <Leader>o :!open %:h<CR><CR>
+nnoremap { :BuffergatorMruCyclePrev<CR>
+nnoremap } :BuffergatorMruCycleNext<CR>
+
+" noremap { :bprev<CR>
+" noremap } :bnext<CR>
+
+" noremap <Leader>o :<C-U> FZF<CR>
+" nnoremap <Leader>o :only<CR>
 
 
 " CLOJURE ---------------------------------------------

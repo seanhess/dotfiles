@@ -18,7 +18,7 @@ export PATH=~/.stack/programs/x86_64-osx/ghc-8.0.1/bin:$PATH
 # Tab Names
 export PROMPT_COMMAND='echo -ne "\033]0;$(basename $PWD)\007"'
 
-export EDITOR="/Applications/MacVim.app/Contents/MacOS/Vim"
+export EDITOR="nvim"
 export SCALA_HOME="/Users/seanhess/local"
 
 #export EDITOR=vi crontab -e
@@ -79,3 +79,16 @@ export HISTSIZE=
 export HISTFILESIZE=
 
 test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
+
+
+# Kubernetes: use kube.config from current directory if it exists, also .kube/config
+export KUBECONFIG=$KUBECONFIG:$HOME/.kube/config:kube.yaml
+
+# Helm: use local folder (use from project root!)
+export HELM_HOME=.helm
+alias kube='kubectl'
+
+
+# make sure to install fd - https://github.com/sharkdp/fd
+export FZF_DEFAULT_COMMAND='fd --type f'
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
