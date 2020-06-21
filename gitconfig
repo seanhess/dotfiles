@@ -1,9 +1,6 @@
 # This is Git's per-user configuration file.
 [user]
-	name = Your Name
-	email = you@example.com
-# Please adapt and uncomment the following lines:
-#	name = Sean Hess
-#	email = seanhess@gmail.com
+	name = Sean Hess
+	email = seanhess@gmail.com
 [alias]
 	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
