@@ -56,6 +56,10 @@ Plug 'ervandew/supertab'
 " Plug 'eagletmt/neco-ghc'
 Plug 'neovimhaskell/haskell-vim'
 Plug 'ndmitchell/ghcid', { 'rtp': 'plugins/nvim' }
+" Plug 'autozimu/LanguageClient-neovim', {
+"     \ 'branch': 'next',
+"     \ 'do': 'bash install.sh',
+"     \ }
 " Plug 'bitc/vim-hdevtools'
 
 " Purescript
@@ -241,7 +245,13 @@ nnoremap <leader>t :Neoformat<CR>
 let g:ale_linters = {
 \   'haskell': []
 \}
+
 let g:airline#extensions#ale#enabled = 1
+
+" let g:LanguageClient_rootMarkers = ['*.cabal', 'stack.yaml']
+" let g:LanguageClient_serverCommands = {
+"     \ 'haskell': ['ghcide', '--lsp'],
+"     \ }
 
 " ----------------------------------------------------------
 
@@ -592,4 +602,12 @@ let g:vimwiki_url_maxsave=10000
 
 " let g:vim_markdown_conceal=0
 " set conceallevel=0
+
+
+
+" Ligatures ----------------------
+syntax match pipe1 contained "%" conceal cchar=| containedin=pipe
+syntax match pipe2 contained ">%" conceal cchar=> containedin=pipe
+syntax match pipe "%>%" contains=pipe1,pipe2
+
 

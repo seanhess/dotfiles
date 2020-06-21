@@ -24,7 +24,7 @@ export SCALA_HOME="/Users/seanhess/local"
 #export EDITOR=vi crontab -e
 export ELM_HOME="/usr/local/lib/node_modules/elm/share"
 
-source ~/bin/git-completion.bash
+# source ~/bin/git-completion.bash
 alias gs='git status'
 alias gc='git commit -m '
 alias gco='git co'
@@ -68,9 +68,9 @@ export NODE_REPL_HISTORY_FILE=/Users/seanhess/.node_history
 # added by Miniconda2 3.19.0 installer
 export PATH="/Users/seanhess/miniconda2/bin:$PATH"
 
-if [ -f `brew --prefix`/etc/bash_completion ]; then
-    . `brew --prefix`/etc/bash_completion
-fi
+# if [ -f `brew --prefix`/etc/bash_completion ]; then
+#     . `brew --prefix`/etc/bash_completion
+# fi
 
 # Android
 export ANDROID_HOME=/usr/local/opt/android-sdk
@@ -78,7 +78,7 @@ export ANDROID_HOME=/usr/local/opt/android-sdk
 export HISTSIZE=
 export HISTFILESIZE=
 
-test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
+# test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
 
 
 # Kubernetes: use kube.config from current directory if it exists, also .kube/config
@@ -91,4 +91,8 @@ alias kube='kubectl'
 
 # make sure to install fd - https://github.com/sharkdp/fd
 export FZF_DEFAULT_COMMAND='fd --type f'
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+# [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+
+# CSV
+alias csv='column -t -s,'
