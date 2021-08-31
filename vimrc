@@ -28,7 +28,7 @@ Plug 'tpope/vim-commentary'      " Command things out
 Plug 'bfredl/nvim-miniyank'      " Fixes clipboard issues
 Plug 'bling/vim-airline'         " Status line
 Plug 'tpope/vim-vinegar'         " File Browser
-" Plug 'valloric/youcompleteme'    " Tab Completion
+Plug 'ajh17/vimcompletesme'      " Tab Completion
 "
 "
 
@@ -160,7 +160,6 @@ set cmdheight=1
 
 set clipboard=unnamedplus "copy to the system clipboard. This setting messes up column pasting
 
-
 " Keyboard Bindings
 " --------------------------
 
@@ -211,9 +210,9 @@ noremap <C-l> <C-w>l
 nnoremap q: <nop>
 nnoremap Q <nop>
 
-" Basic tab completion
-inoremap <silent><expr> <TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+" Control-E loads errorfile and jumps to first error
+noremap <C-e> :cf<CR>
+
 
 
 " Vim-vinegar / netrw guide: https://github.com/tpope/vim-vinegar
@@ -253,14 +252,14 @@ let g:airline#extensions#ale#enabled = 1
 " let g:ale_lint_on_insert_leave = 0
 
 " Use the quickfix window instead of loclist
-let g:ale_set_loclist = 0
-let g:ale_set_quickfix = 1
+let g:ale_set_loclist = 1
+let g:ale_set_quickfix = 0
 
 " open the window automatically with errors
-let g:ale_open_list = 1
+let g:ale_open_list = 0
 
 let g:ale_linters = {
-  \  'haskell': []
+  \  'haskell': ['']
   \}
 
 " Ack
@@ -416,37 +415,21 @@ let g:elm_format_autosave = 0
 "au filetype coffee setlocal shiftwidth=2
 
 "" Haskell -----------------------------------------------------------------
-""au filetype haskell setlocal omnifunc=necoghc#omnifunc
-""let g:haddock_browser="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
 
-"" autocmd FileType haskell nnoremap <silent> <C-e> :cc<CR>
-"" let g:haskell_indent_disable=1
-"" au FileType haskell noremap <silent> <leader>e :cfile .quickfix<CR>
+" ErrorFormat for ghcid
+" $ ghcid -o ghcid.txt
+" echo "set errorfile=ghcid.txt" > .nvimrc
+" :cf
 
-"" ErrorFormat for GHC errors
-"" au FileType haskell setlocal efm=%E%f:%l:%c:\ error:
-"" au FileType haskell setlocal efm+=%E%f:%l:%c-%*[0-9]:\ error:
-"" au FileType haskell setlocal efm+=%E%f:%l:%c-%*[0-9]:\ error:%m
-"" au FileType haskell setlocal efm+=%C\ \ \ \ •%m
-"" au FileType haskell setlocal efm+=%C\ \ \ \ \ \ %m
-"" au FileType haskell setlocal efm+=%C%.%#
-"" let g:hdevtools_options = '-g-Wall'
+au FileType haskell set efm=START
 
-""let g:haskellmode_completion_ghc = 0
-""autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
-""let g:ycm_semantic_triggers = {'haskell' : ['.']}
-""let g:necoghc_debug = 1
-""let g:necoghc_enable_detailed_browse = 1
-"hi clear Conceal
-""let g:haskell_conceal_wide = 1
-"" let g:haskell_conceal_enumerations = 0
-"" https://vimawesome.com/plugin/vim-haskellconcealplus
-"" let hscoptions="𝐒𝐓𝐄𝐌BQZNDCt"
+" " /Users/seanhess/Documents/code/finalfive/src/FinalFive/Page/Live/Details.hs:186:17-29: error:
+au FileType haskell set efm+=%f:%l:%c%.%#
 
+" " /Users/seanhess/Documents/code/finalfive/src/FinalFive/Page/Live/Details.hs:(176,45)-(178,29): error:
+" " You have to super escape commas
+au FileType haskell set efm+=%f:(%l\\,%c)%.%#
 
-
-
-"" ignore files
 
 
 
