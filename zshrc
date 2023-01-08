@@ -104,9 +104,16 @@ source $ZSH/oh-my-zsh.sh
 # export CPPFLAGS="-I/usr/local/opt/llvm/include"
 # export LDFLAGS="-L/usr/local/opt/llvm@12/lib"
 # export CPPFLAGS="-I/usr/local/opt/llvm@12/include"
-export LDFLAGS="-L/opt/homebrew/opt/llvm@12/lib"
-export CPPFLAGS="-I/opt/homebrew/opt/llvm@12/include"
+# export LDFLAGS="-L/opt/homebrew/opt/llvm@12/lib"
+# export CPPFLAGS="-I/opt/homebrew/opt/llvm@12/include"
 
 alias ros="echo '-> x86_64' && arch -x86_64 zsh"
 # echo "Switching to Rosetta"
 # arch -x86_64 zsh
+
+# eval "$(direnv hook zsh)"
+# [ -f "/Users/sean/.ghcup/env" ] && source "/Users/sean/.ghcup/env" # ghcup-env
+[ -f "/Users/sean/.ghcup/env" ] && source "/Users/sean/.ghcup/env" # ghcup-env
+
+alias python="python3"
+alias pip="pip3"

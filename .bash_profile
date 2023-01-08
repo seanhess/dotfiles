@@ -2,7 +2,7 @@
 export CLICOLOR=1;
 
 # Path
-export PATH=~/bin:~/local/bin:/opt/local/bin:/opt/local/sbin:/usr/local/bin:/usr/local/sbin:$PATH
+export PATH=~/bin:~/local/bin:/opt/local/bin:/opt/local/sbin:/opt/homebrew/bin:/usr/local/sbin:$PATH
 export PATH=/usr/local/octave/3.8.0/bin:$PATH
 #export PATH=~/.cabal/bin:/Users/seanhess/Library/Haskell/bin:$PATH
 #Add GHC 7.8.3 to the PATH, via http://ghcformacosx.github.io/
