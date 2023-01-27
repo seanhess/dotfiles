@@ -1,5 +1,24 @@
 # If you come from bash you might have to change your $PATH.
-export PATH=$HOME/bin:$HOME/.local/bin:$HOME/.ghcup/bin:/usr/local/bin:/opt/homebrew/bin:$PATH
+
+
+
+# Default system PATH
+export PATH=/usr/bin:/bin:/usr/sbin:/sbin
+
+# Detect architecture and change PATH accordingly
+arch=$(arch)
+echo "Arch: $arch"
+if [[ $arch == x86_64* ]] || [[ $arch == i*86 ]]; then
+  echo "Rosetta"
+  export PATH=/usr/local/bin:$HOME/.local/bin86:$PATH
+
+elif  [[ $arch == arm* ]]; then
+  echo "M1"
+  export PATH=$HOME/bin:$HOME/.local/bin:$HOME/.ghcup/bin:/opt/homebrew/bin:$PATH
+  [ -f "/Users/sean/.ghcup/env" ] && source "/Users/sean/.ghcup/env" # ghcup-env
+fi
+
+# export PATH=$HOME/bin:$HOME/.local/bin:$HOME/.ghcup/bin:/usr/local/bin:/opt/homebrew/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
@@ -102,18 +121,17 @@ source $ZSH/oh-my-zsh.sh
 
 # export LDFLAGS="-L/usr/local/opt/llvm/lib"
 # export CPPFLAGS="-I/usr/local/opt/llvm/include"
+# export LDFLAGS="-L/opt/homebrew/opt/llvm@13/lib"
+# export CPPFLAGS="-I/opt/homebrew/opt/llvm@13/include"
 # export LDFLAGS="-L/usr/local/opt/llvm@12/lib"
 # export CPPFLAGS="-I/usr/local/opt/llvm@12/include"
 # export LDFLAGS="-L/opt/homebrew/opt/llvm@12/lib"
 # export CPPFLAGS="-I/opt/homebrew/opt/llvm@12/include"
 
 alias ros="echo '-> x86_64' && arch -x86_64 zsh"
-# echo "Switching to Rosetta"
-# arch -x86_64 zsh
 
 # eval "$(direnv hook zsh)"
 # [ -f "/Users/sean/.ghcup/env" ] && source "/Users/sean/.ghcup/env" # ghcup-env
-[ -f "/Users/sean/.ghcup/env" ] && source "/Users/sean/.ghcup/env" # ghcup-env
 
 alias python="python3"
 alias pip="pip3"
