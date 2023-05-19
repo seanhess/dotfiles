@@ -14,7 +14,7 @@ if [[ $arch == x86_64* ]] || [[ $arch == i*86 ]]; then
 
 elif  [[ $arch == arm* ]]; then
   echo "M1"
-  export PATH=$HOME/bin:$HOME/.local/bin:$HOME/.ghcup/bin:/opt/homebrew/bin:$PATH
+  export PATH=$HOME/bin:$HOME/.local/bin:$HOME/.ghcup/bin:/opt/homebrew/bin:$HOME/.cargo/bin:$PATH
   [ -f "/Users/sean/.ghcup/env" ] && source "/Users/sean/.ghcup/env" # ghcup-env
 fi
 
@@ -135,3 +135,6 @@ alias ros="echo '-> x86_64' && arch -x86_64 zsh"
 
 alias python="python3"
 alias pip="pip3"
+
+# Add direnv hook
+eval "$(direnv hook zsh)"
