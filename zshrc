@@ -89,7 +89,7 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+plugins=(git docker docker-compose)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -138,3 +138,8 @@ alias pip="pip3"
 
 # Add direnv hook
 eval "$(direnv hook zsh)"
+
+
+### Fix for making Docker plugin work
+autoload -U compinit && compinit
+###
