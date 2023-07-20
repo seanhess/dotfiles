@@ -159,5 +159,3 @@ alias pip="pip3"
 #   export PATH=$HOME/bin:$HOME/.local/bin:$HOME/.ghcup/bin:/opt/homebrew/bin:$HOME/.cargo/bin:$PATH
 #   [ -f "/Users/sean/.ghcup/env" ] && source "/Users/sean/.ghcup/env" # ghcup-env
 # fi
-
-[ -f "/Users/seanhess/.ghcup/env" ] && source "/Users/seanhess/.ghcup/env" # ghcup-env
