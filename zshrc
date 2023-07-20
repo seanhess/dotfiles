@@ -3,20 +3,20 @@
 
 
 # Default system PATH
-export PATH=/usr/bin:/bin:/usr/sbin:/sbin
+export PATH=/opt/homebrew/bin:/usr/bin:/bin:/usr/sbin:/sbin
 
 # Detect architecture and change PATH accordingly
-arch=$(arch)
-echo "Arch: $arch"
-if [[ $arch == x86_64* ]] || [[ $arch == i*86 ]]; then
-  echo "Rosetta"
-  export PATH=/usr/local/bin:$HOME/.local/bin86:$PATH
-
-elif  [[ $arch == arm* ]]; then
-  echo "M1"
-  export PATH=$HOME/bin:$HOME/.local/bin:$HOME/.ghcup/bin:/opt/homebrew/bin:$HOME/.cargo/bin:$PATH
-  [ -f "/Users/sean/.ghcup/env" ] && source "/Users/sean/.ghcup/env" # ghcup-env
-fi
+# arch=$(arch)
+# echo "Arch: $arch"
+# if [[ $arch == x86_64* ]] || [[ $arch == i*86 ]]; then
+#   echo "Rosetta"
+#   export PATH=/usr/local/bin:$HOME/.local/bin86:$PATH
+# 
+# elif  [[ $arch == arm* ]]; then
+#   echo "M1"
+#   export PATH=$HOME/bin:$HOME/.local/bin:$HOME/.ghcup/bin:/opt/homebrew/bin:$HOME/.cargo/bin:$PATH
+#   [ -f "/Users/sean/.ghcup/env" ] && source "/Users/sean/.ghcup/env" # ghcup-env
+# fi
 
 # export PATH=$HOME/bin:$HOME/.local/bin:$HOME/.ghcup/bin:/usr/local/bin:/opt/homebrew/bin:$PATH
 
@@ -128,7 +128,6 @@ source $ZSH/oh-my-zsh.sh
 # export LDFLAGS="-L/opt/homebrew/opt/llvm@12/lib"
 # export CPPFLAGS="-I/opt/homebrew/opt/llvm@12/include"
 
-alias ros="echo '-> x86_64' && arch -x86_64 zsh"
 
 # eval "$(direnv hook zsh)"
 # [ -f "/Users/sean/.ghcup/env" ] && source "/Users/sean/.ghcup/env" # ghcup-env
@@ -141,5 +140,23 @@ eval "$(direnv hook zsh)"
 
 
 ### Fix for making Docker plugin work
-autoload -U compinit && compinit
-###
+# autoload -U compinit && compinit
+#
+#
+
+## ARCHITECTURE SWITCH
+# alias ros="echo '-> x86_64' && arch -x86_64 zsh"
+
+## Detect architecture and change PATH accordingly
+## - belongs at top of file
+# arch=$(arch)
+# echo "Arch: $arch"
+# if [[ $arch == x86_64* ]] || [[ $arch == i*86 ]]; then
+#   echo "Rosetta"
+#   export PATH=/usr/local/bin:$HOME/.local/bin86:$PATH
+# 
+# elif  [[ $arch == arm* ]]; then
+#   echo "M1"
+#   export PATH=$HOME/bin:$HOME/.local/bin:$HOME/.ghcup/bin:/opt/homebrew/bin:$HOME/.cargo/bin:$PATH
+#   [ -f "/Users/sean/.ghcup/env" ] && source "/Users/sean/.ghcup/env" # ghcup-env
+# fi
