@@ -8,6 +8,8 @@ return {
     dependencies = { "nvim-lua/plenary.nvim", "nvim-telescope/telescope.nvim" },
     branch = "1.x.x",
   },
+
+  { "Pocco81/auto-save.nvim" },
 }
 
 -- every spec file under the "plugins" directory will be loaded automatically by lazy.nvim
