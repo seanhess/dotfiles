@@ -1,8 +1,28 @@
 return {
 
   --
-  { "echasnovski/mini.nvim", version = false },
+  {
+    "echasnovski/mini.nvim",
+    version = false,
 
+    -- config = function()
+    --   require("mini.files").setup({
+    --     mappings = {
+    --       close = "q",
+    --       go_in = "x",
+    --       go_in_plus = "<CR>",
+    --       go_out = "h",
+    --       go_out_plus = "H",
+    --       reset = "<BS>",
+    --       reveal_cwd = "@",
+    --       show_help = "g?",
+    --       synchronize = "=",
+    --       trim_left = "<",
+    --       trim_right = ">",
+    --     },
+    --   })
+    -- end,
+  },
   {
     "mrcjkb/haskell-tools.nvim",
     dependencies = { "nvim-lua/plenary.nvim", "nvim-telescope/telescope.nvim" },

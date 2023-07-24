@@ -13,7 +13,11 @@ require("lazy").setup({
     -- import any extras modules here
     -- { import = "lazyvim.plugins.extras.lang.typescript" },
     -- { import = "lazyvim.plugins.extras.lang.json" },
-    { import = "lazyvim.plugins.extras.editor.mini-files" },
+    {
+      -- https://www.lazyvim.org/extras/editor/mini-files
+      import = "lazyvim.plugins.extras.editor.mini-files",
+    },
+
     -- { import = "lazyvim.plugins.extras.dap.core" },
     -- import/override with your plugins
     { import = "plugins" },
