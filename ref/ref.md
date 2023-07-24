@@ -5,7 +5,54 @@ TO INVESTIGATE
 
 
 
+TEMP SETUP STEPS
+================
 
+
+    brew install pyenv
+    brew install pyenv-virtualenv
+
+
+
+
+
+
+TMUX
+==================
+
+    https://tmuxcheatsheet.com/
+
+
+Attaching to Sessions
+
+    tmux
+    tmux a
+    tmux a -t 0
+    tmux a -t named-session
+
+Managing Sessions
+  
+    ctrl+b $
+    ctrl+b d
+
+
+
+
+Managing Panes
+
+    # change layout (columns)
+    ctrl+b space
+
+
+
+Bring up the command prompt, then there are several commands
+
+    ctrl+b :
+
+Then there are lots of commands you can run
+
+    rename-session my-name
+    source-file ~/.tmux-conf
 
 
 LAZY VIM MAPPINGS
