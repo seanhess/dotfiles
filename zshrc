@@ -84,14 +84,24 @@ ZSH_THEME="robbyrussell"
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
+
+# Python Configuration (before plugins load)
+export PYENV_ROOT="$HOME/.pyenv"
+command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+
 # Which plugins would you like to load?
 # Standard plugins can be found in $ZSH/plugins/
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git docker docker-compose direnv)
+plugins=(git docker docker-compose direnv pyenv)
 
 source $ZSH/oh-my-zsh.sh
+
+
+# Auto-load Pythong?
+if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
 
 # User configuration
 
@@ -131,11 +141,9 @@ source $ZSH/oh-my-zsh.sh
 
 # [ -f "/Users/sean/.ghcup/env" ] && source "/Users/sean/.ghcup/env" # ghcup-env
 
-alias python="python3"
-alias pip="pip3"
+# alias python="python3"
+# alias pip="pip3"
 
-# Add direnv hook
-# eval "$(direnv hook zsh)"
 
 
 ### Fix for making Docker plugin work
@@ -161,3 +169,12 @@ alias pip="pip3"
 # fi
 
 [ -f "/Users/seanhess/.ghcup/env" ] && source "/Users/seanhess/.ghcup/env" # ghcup-env
+
+
+# Automatically activate Python virtual environments
+# this will only happen when creating a new session
+#
+# if [ -e "venv/bin/activate" ]; then
+#     source "venv/bin/activate";
+# fi
+
