@@ -24,6 +24,20 @@ return {
     -- end,
   },
   {
+    "aserowy/tmux.nvim",
+    config = function()
+      return require("tmux").setup({
+        -- Enables default bindings. Default: true
+        navigation = {
+          -- Default: 'C-h'
+          cycle_navigation = true,
+          -- Default: 'C-%'
+          enable_default_keybindings = true,
+        },
+      })
+    end,
+  },
+  {
     "mrcjkb/haskell-tools.nvim",
     dependencies = { "nvim-lua/plenary.nvim", "nvim-telescope/telescope.nvim" },
     branch = "1.x.x",
