@@ -14,6 +14,17 @@ TEMP SETUP STEPS
 
 
 
+WATCHING FILES
+==============
+
+Watch all local python files, including sub directories and newly added files, and rerun command 
+
+    watchexec -r -e py -- mypy .
+
+
+    
+
+
 
 
 
