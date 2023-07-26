@@ -1,49 +1,62 @@
 return {
 
   --
-  {
-    "echasnovski/mini.nvim",
-    version = false,
-
-    -- config = function()
-    --   require("mini.files").setup({
-    --     mappings = {
-    --       close = "q",
-    --       go_in = "x",
-    --       go_in_plus = "<CR>",
-    --       go_out = "h",
-    --       go_out_plus = "H",
-    --       reset = "<BS>",
-    --       reveal_cwd = "@",
-    --       show_help = "g?",
-    --       synchronize = "=",
-    --       trim_left = "<",
-    --       trim_right = ">",
-    --     },
-    --   })
-    -- end,
-  },
-  {
-    "aserowy/tmux.nvim",
-    config = function()
-      return require("tmux").setup({
-        -- Enables default bindings. Default: true
-        navigation = {
-          -- Default: 'C-h'
-          cycle_navigation = true,
-          -- Default: 'C-%'
-          enable_default_keybindings = true,
-        },
-      })
-    end,
-  },
+  -- {
+  --   "echasnovski/mini.nvim",
+  --   version = false,
+  --
+  --   opts = function()
+  --     print("OPTS MINI 2")
+  --   end,
+  --
+  --   config = function()
+  --     print("CONFIG MINI FILES 2")
+  --     require("mini.files").setup({
+  --       mappings = {
+  --         close = "q",
+  --         go_in = "x",
+  --         go_in_plus = "<CR>",
+  --         go_out = "h",
+  --         go_out_plus = "H",
+  --         reset = "<BS>",
+  --         reveal_cwd = "@",
+  --         show_help = "g?",
+  --         synchronize = "=",
+  --         trim_left = "<",
+  --         trim_right = ">",
+  --       },
+  --       windows = {
+  --         -- Whether to show preview of file/directory under cursor
+  --         preview = true,
+  --         -- Width of focused window
+  --         width_focus = 1150,
+  --         -- Width of non-focused window
+  --         width_nofocus = 1115,
+  --         -- Width of preview window
+  --         width_preview = 1125,
+  --       },
+  --     })
+  --   end,
+  -- },
+  -- {
+  --   "aserowy/tmux.nvim",
+  --   config = function()
+  --     return require("tmux").setup({
+  --       -- Enables default bindings. Default: true
+  --       navigation = {
+  --         -- Default: 'C-h'
+  --         cycle_navigation = true,
+  --         -- Default: 'C-%'
+  --         enable_default_keybindings = true,
+  --       },
+  --     })
+  --   end,
+  -- },
   {
     "mrcjkb/haskell-tools.nvim",
     dependencies = { "nvim-lua/plenary.nvim", "nvim-telescope/telescope.nvim" },
     branch = "1.x.x",
   },
-
-  { "Pocco81/auto-save.nvim" },
 }
 
 -- every spec file under the "plugins" directory will be loaded automatically by lazy.nvim
