@@ -33,6 +33,10 @@ TMUX
 
     https://tmuxcheatsheet.com/
 
+Load all bound key commandso
+
+    ctrl+a ?
+
 
 Attaching to Sessions
 
@@ -48,11 +52,13 @@ Managing Sessions
 
 
 
-
 Managing Panes
 
     # change layout (columns)
     ctrl+b space
+
+    # show pane numbers
+    ctrl+b q
 
 
 
