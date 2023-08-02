@@ -3,7 +3,7 @@
 
 
 # Default system PATH
-export PATH=/opt/homebrew/bin:/usr/bin:/bin:/usr/sbin:/sbin
+export PATH=~/.local/bin:/opt/homebrew/bin:/usr/bin:/bin:/usr/sbin:/sbin
 
 # Detect architecture and change PATH accordingly
 # arch=$(arch)

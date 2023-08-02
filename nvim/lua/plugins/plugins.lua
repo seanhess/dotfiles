@@ -1,5 +1,26 @@
 return {
 
+  { "luc-tielen/telescope_hoogle" },
+  { "echasnovski/mini.surround" },
+  {
+    "mrcjkb/haskell-tools.nvim",
+    dependencies = { "nvim-lua/plenary.nvim", "nvim-telescope/telescope.nvim" },
+    branch = "1.x.x",
+    opts = {
+      hls = { -- LSP client options
+        -- ...
+        default_settings = {
+          haskell = { -- haskell-language-server options
+            formattingProvider = "fourmolu",
+            -- -- Setting this to true could have a performance impact on large mono repos.
+            -- checkProject = true,
+            -- ...
+          },
+        },
+      },
+    },
+  },
+
   --
   -- {
   --   "echasnovski/mini.nvim",
@@ -52,11 +73,6 @@ return {
   --     })
   --   end,
   -- },
-  {
-    "mrcjkb/haskell-tools.nvim",
-    dependencies = { "nvim-lua/plenary.nvim", "nvim-telescope/telescope.nvim" },
-    branch = "1.x.x",
-  },
 }
 
 -- every spec file under the "plugins" directory will be loaded automatically by lazy.nvim

@@ -12,6 +12,10 @@ TEMP SETUP STEPS
     brew install pyenv
     brew install pyenv-virtualenv
 
+    https://github.com/luc-tielen/telescope_hoogle
+
+    cabal install hoogle
+    hoogle generate
 
 
 WATCHING FILES

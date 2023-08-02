@@ -22,9 +22,12 @@ vim.opt.tabstop = 4 -- Number of spaces tabs count for
 -- save on exit buffer
 vim.api.nvim_create_autocmd({ "BufLeave", "FocusLost" }, {
   callback = function()
-    if vim.bo.modified and not vim.bo.readonly and vim.fn.expand("%") ~= "" and vim.bo.buftype == "" then
+    local save = function()
       vim.api.nvim_command("update")
+    end
 
+    if vim.bo.modified and not vim.bo.readonly and vim.fn.expand("%") ~= "" and vim.bo.buftype == "" then
+      pcall(save)
     end
   end,
 })
