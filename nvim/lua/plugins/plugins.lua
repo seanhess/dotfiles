@@ -2,6 +2,17 @@ return {
 
   { "luc-tielen/telescope_hoogle" },
   { "echasnovski/mini.surround" },
+  { "echasnovski/mini.pairs", enabled = false },
+  {
+    "echasnovski/mini.surround",
+    opts = {
+      mappings = {
+        add = "gsa",
+        delete = "gsd",
+        replace = "gsr",
+      },
+    },
+  },
   {
     "mrcjkb/haskell-tools.nvim",
     dependencies = { "nvim-lua/plenary.nvim", "nvim-telescope/telescope.nvim" },
