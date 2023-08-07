@@ -169,7 +169,10 @@ if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -
 # fi
 #
 
-[ -f "/Users/seanhess/.ghcup/env" ] && source "/Users/seanhess/.ghcup/env" # ghcup-env
+[ -f "/Users/shess/.ghcup/env" ] && source "/Users/shess/.ghcup/env" # ghcup-env
+
+
+alias vpn="sudo openconnect -u sehe1342 --no-xmlpost vpn.colorado.edu/nso"
 
 
 # Automatically activate Python virtual environments

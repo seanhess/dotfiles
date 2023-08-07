@@ -1,3 +1,23 @@
+SETUP
+======
+
+Install [FireCode Nerd Font Mono](https://www.nerdfonts.com/font-downloads)
+* Download
+* Drag into font book
+
+PyENV
+
+    brew install pyenv
+    brew install pyenv-virtualenv
+    pyenv versions
+    pyenv install 3.11.4
+    pyenv local 3.11.4
+
+Watch Files
+
+    watchexec -r -e py -- mypy .
+
+
 TO INVESTIGATE
 ==============
 
