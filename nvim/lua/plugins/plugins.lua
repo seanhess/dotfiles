@@ -1,7 +1,10 @@
 return {
 
   { "luc-tielen/telescope_hoogle" },
-  { "echasnovski/mini.surround" },
+  -- {
+  --   "nvim-treesitter/nvim-treesitter",
+  --   enabled = true,
+  -- },
   { "echasnovski/mini.pairs", enabled = false },
   {
     "echasnovski/mini.surround",
@@ -10,6 +13,18 @@ return {
         add = "gsa",
         delete = "gsd",
         replace = "gsr",
+      },
+    },
+  },
+  -- add pyright to lspconfig
+  {
+    "neovim/nvim-lspconfig",
+    ---@class PluginLspOpts
+    opts = {
+      ---@type lspconfig.options
+      servers = {
+        -- pyright will be automatically installed with mason and loaded with lspconfig
+        pyright = {},
       },
     },
   },
@@ -23,11 +38,35 @@ return {
         default_settings = {
           haskell = { -- haskell-language-server options
             formattingProvider = "fourmolu",
+            -- formattingProvider = false,
             -- -- Setting this to true could have a performance impact on large mono repos.
             -- checkProject = true,
             -- ...
           },
         },
+      },
+    },
+  },
+
+  {
+    "nvim-treesitter/nvim-treesitter",
+    opts = {
+      ensure_installed = {
+        "bash",
+        "html",
+        "javascript",
+        "json",
+        "lua",
+        "markdown",
+        "markdown_inline",
+        "python",
+        "query",
+        "regex",
+        -- "tsx",
+        -- "typescript",
+        -- "vim",
+        "yaml",
+        "haskell",
       },
     },
   },
