@@ -5,13 +5,16 @@ Install [FireCode Nerd Font Mono](https://www.nerdfonts.com/font-downloads)
 * Download
 * Drag into font book
 
-PyENV
+[Install PyENV](https://realpython.com/intro-to-pyenv/).
 
     brew install pyenv
     brew install pyenv-virtualenv
     pyenv versions
     pyenv install 3.11.4
     pyenv local 3.11.4
+
+    pyenv virtualenv 3.11.4 myproject
+    pyenv local myproject
 
 Watch Files
 
@@ -43,7 +46,9 @@ WATCHING FILES
 
 Watch all local python files, including sub directories and newly added files, and rerun command 
 
-    watchexec -r -e py -- mypy .
+    watchexec -e py,txt mypy .
+    -r # restart whatever it is
+
 
 
     
