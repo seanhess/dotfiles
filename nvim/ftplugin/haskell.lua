@@ -28,4 +28,4 @@ vim.keymap.set("n", "<leader>rq", ht.repl.quit, opts)
 
 -- Detect nvim-dap launch configurations
 -- (requires nvim-dap and haskell-debug-adapter)
-ht.dap.discover_configurations(bufnr)
+-- ht.dap.discover_configurations(bufnr)
