@@ -170,9 +170,9 @@ alias vpn="sudo openconnect -u sehe1342 --no-xmlpost vpn.colorado.edu/nso"
 now=$(date +"%Y-%m-%d %H:%M")
 last=$(cat ~/.backup)
 if [ $now != $last ]; then
-    rsync -a --exclude-from=/Users/shess/code/.gitignore ~/code ~/Desktop/code
+    rsync -a --exclude-from=$HOME/code/.gitignore ~/code ~/Desktop/code
     echo "$now" > ~/.backup
-    echo "BACKUP $now"
+    echo "BACKUP ~/code at $now"
 fi
 
 # elif  [[ $arch == arm* ]]; then
