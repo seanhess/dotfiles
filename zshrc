@@ -166,6 +166,21 @@ source $ZSH/oh-my-zsh.sh
 alias vpn="sudo openconnect -u sehe1342 --no-xmlpost vpn.colorado.edu/nso"
 
 
+# Automatically back up code folder every time you split!
+now=$(date +"%Y-%m-%d %H:%M")
+last=$(cat ~/.backup)
+if [ $now != $last ]; then
+    rsync -a --exclude-from=/Users/shess/code/.gitignore ~/code ~/Desktop/code
+    echo "$now" > ~/.backup
+    echo "BACKUP $now"
+fi
+
+# elif  [[ $arch == arm* ]]; then
+#   echo "M1"
+#   export PATH=$HOME/bin:$HOME/.local/bin:$HOME/.ghcup/bin:/opt/homebrew/bin:$HOME/.cargo/bin:$PATH
+#   [ -f "/Users/sean/.ghcup/env" ] && source "/Users/sean/.ghcup/env" # ghcup-env
+# fi
+
 
 # Automatically activate Python virtual environments
 # this will only happen when creating a new session
