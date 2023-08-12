@@ -85,23 +85,14 @@ ZSH_THEME="robbyrussell"
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
 
-# Python Configuration (before plugins load)
-export PYENV_ROOT="$HOME/.pyenv"
-command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
-
 # Which plugins would you like to load?
 # Standard plugins can be found in $ZSH/plugins/
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git docker docker-compose direnv pyenv poetry)
+plugins=(git docker docker-compose direnv poetry zsh-vi-mode)
 
 source $ZSH/oh-my-zsh.sh
-
-
-# Auto-load Pythong?
-if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
 
 # User configuration
 
@@ -173,6 +164,7 @@ if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -
 
 
 alias vpn="sudo openconnect -u sehe1342 --no-xmlpost vpn.colorado.edu/nso"
+
 
 
 # Automatically activate Python virtual environments
