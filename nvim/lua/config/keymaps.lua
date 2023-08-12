@@ -30,3 +30,5 @@ end
 --
 vim.api.nvim_set_keymap("n", "<leader>w\\", ":vsplit<CR>", { noremap = true, silent = true })
 vim.api.nvim_del_keymap("n", "<leader>w|")
+vim.api.nvim_set_keymap("n", "<leader>en", "]e", {})
+vim.api.nvim_set_keymap("n", "<leader>e?", "[e", {})

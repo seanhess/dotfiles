@@ -37,11 +37,11 @@ return {
         -- ...
         default_settings = {
           haskell = { -- haskell-language-server options
-            formattingProvider = "fourmolu",
-            -- formattingProvider = false,
-            -- -- Setting this to true could have a performance impact on large mono repos.
-            -- checkProject = true,
-            -- ...
+            -- formattingProvider = "fourmolu",
+            formattingProvider = false,
+            -- Setting this to true could have a performance impact on large mono repos.
+            checkProject = true,
+            ...,
           },
         },
       },
@@ -72,8 +72,6 @@ return {
   },
 
   --
-  -- {
-  --   "echasnovski/mini.nvim",
   --   version = false,
   --
   --   opts = function()
