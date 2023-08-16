@@ -9,16 +9,16 @@
 
 -- https://github.com/aserowy/tmux.nvim/issues/92
 -- local Util = require("lazyvim.util")
-local function map(mode, lhs, rhs, opts)
-  local keys = require("lazy.core.handler").handlers.keys
-  ---@cast keys LazyKeysHandler
-  -- do not create the keymap if a lazy keys handler exists
-  if not keys.active[keys.parse({ lhs, mode = mode }).id] then
-    opts = opts or {}
-    opts.silent = opts.silent ~= false
-    vim.keymap.set(mode, lhs, rhs, opts)
-  end
-end
+-- local function map(mode, lhs, rhs, opts)
+--   local keys = require("lazy.core.handler").handlers.keys
+--   ---@cast keys LazyKeysHandler
+--   -- do not create the keymap if a lazy keys handler exists
+--   if not keys.active[keys.parse({ lhs, mode = mode }).id] th-en
+--     opts = opts or {}
+--     opts.silent = opts.silent ~= false
+--     vim.keymap.set(mode, lhs, rhs, opts)
+--   end
+-- end
 
 -- map("n", "<C-h>", "<cmd>lua require'tmux'.move_left()<cr>", { desc = "Go to left window" })
 -- map("n", "<C-j>", "<cmd>lua require'tmux'.move_bottom()<cr>", { desc = "Go to lower window" })
@@ -32,3 +32,4 @@ vim.api.nvim_set_keymap("n", "<leader>w\\", ":vsplit<CR>", { noremap = true, sil
 vim.api.nvim_del_keymap("n", "<leader>w|")
 vim.api.nvim_set_keymap("n", "<leader>en", "]e", {})
 vim.api.nvim_set_keymap("n", "<leader>e?", "[e", {})
+-- vim.keymap.del({ "n", "v" }, "s")
