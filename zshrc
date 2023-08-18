@@ -171,7 +171,7 @@ alias vpn="sudo openconnect -u sehe1342 --no-xmlpost vpn.colorado.edu/nso"
 now=$(date +"%Y-%m-%d %H:%M")
 last=$(cat ~/.backup)
 if [ $now != $last ]; then
-    rsync -a --exclude-from=$HOME/code/.gitignore ~/code ~/Desktop/code
+    rsync -a --exclude-from=$HOME/code/.gitignore ~/code/ ~/Desktop/code
     echo "$now" > ~/.backup
     echo "BACKUP ~/code at $now"
 fi
@@ -185,6 +185,8 @@ fi
 
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
+
+alias backup-remote="rsync -a ~/Desktop/code/ sean@208.83.226.9:~/code"
 
 
 # Automatically activate Python virtual environments
