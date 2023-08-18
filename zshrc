@@ -181,6 +181,10 @@ fi
 #   export PATH=$HOME/bin:$HOME/.local/bin:$HOME/.ghcup/bin:/opt/homebrew/bin:$HOME/.cargo/bin:$PATH
 #   [ -f "/Users/sean/.ghcup/env" ] && source "/Users/sean/.ghcup/env" # ghcup-env
 # fi
+#
+
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
 
 
 # Automatically activate Python virtual environments

@@ -13,7 +13,6 @@ vim.o.autoread = true
 vim.cmd([[autocmd FocusGained * :checktime]])
 
 -- disable ex mode
-vim.api.nvim_set_keymap("n", "Q", "<Nop>", { noremap = true, silent = true })
 
 vim.o.expandtab = true -- Use spaces instead of tabs
 vim.o.shiftwidth = 2 -- Size of an indent

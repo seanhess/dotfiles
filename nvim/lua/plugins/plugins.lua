@@ -61,6 +61,11 @@ return {
     dependencies = { "nvim-lua/plenary.nvim", "nvim-telescope/telescope.nvim" },
     branch = "1.x.x",
     opts = {
+      codeLens = {
+        -- Whether to automatically display/refresh codeLenses
+        -- (explicitly set to false to disable)
+        autoRefresh = true,
+      },
       hls = { -- LSP client options
         -- ...
         default_settings = {
@@ -68,7 +73,7 @@ return {
             formattingProvider = "fourmolu",
             -- formattingProvider = "none",
             -- Setting this to true could have a performance impact on large mono repos.
-            checkProject = true,
+            checkProject = false,
             ...,
           },
         },

@@ -6,9 +6,9 @@ ht.start_or_attach({
       local opts = vim.tbl_extend("keep", def_opts, { buffer = bufnr })
       -- haskell-language-server relies heavily on codeLenses,
       -- so auto-refresh (see advanced configuration) is enabled by default
-      vim.keymap.set("n", "<space>ca", vim.lsp.codelens.run, opts)
-      vim.keymap.set("n", "<space>hs", ht.hoogle.hoogle_signature, opts)
-      vim.keymap.set("n", "<space>ea", ht.lsp.buf_eval_all, opts)
+      -- vim.keymap.set("n", "<leader>ca", vim.lsp.codelens.run, opts)
+      vim.keymap.set("n", "<leader>hs", ht.hoogle.hoogle_signature, opts)
+      vim.keymap.set("n", "<leader>ea", ht.lsp.buf_eval_all, opts)
     end,
   },
 })
@@ -29,3 +29,4 @@ vim.keymap.set("n", "<leader>rq", ht.repl.quit, opts)
 -- Detect nvim-dap launch configurations
 -- (requires nvim-dap and haskell-debug-adapter)
 -- ht.dap.discover_configurations(bufnr)
+--

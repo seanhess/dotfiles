@@ -1,3 +1,27 @@
+local wk = require("which-key")
+local ht = require("haskell-tools")
+
+wk.register({
+  ["<leader>ce"] = { ht.lsp.buf_eval_all, "Eval All CodeLenses" },
+
+  ["<leader>hr"] = { ht.lsp.restart, "HLS Restart" },
+
+  ["<leader>en"] = {
+    function()
+      vim.diagnostic.goto_next({ severity = vim.lsp.protocol.DiagnosticSeverity.Error })
+    end,
+    "Error Next",
+  },
+  ["<leader>e?"] = {
+    function()
+      vim.diagnostic.goto_prev({ severity = vim.lsp.protocol.DiagnosticSeverity.Error })
+    end,
+    "Error Next",
+  },
+}, { noremap = true, silent = true })
+
+-- vim.keymap.set("n", "<leader>ce", vim.lsp.codelens.run, { noremap = true })
+
 -- Keymaps are automatically loaded on the VeryLazy event
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 -- Add any additional keymaps here
@@ -28,8 +52,14 @@
 -- vim.api.nvim_set_keymap("n", "<C-w>\\", ":vsplit<CR>", { noremap = true, silent = true })
 -- vim.api.nvim_set_keymap("n", "<C-w>-", ":split<CR>", { noremap = true, silent = true })
 --
-vim.api.nvim_set_keymap("n", "<leader>w\\", ":vsplit<CR>", { noremap = true, silent = true })
-vim.api.nvim_del_keymap("n", "<leader>w|")
-vim.api.nvim_set_keymap("n", "<leader>en", "]e", {})
-vim.api.nvim_set_keymap("n", "<leader>e?", "[e", {})
+--Disable Ex mode
+vim.api.nvim_set_keymap("n", "Q", "<Nop>", { noremap = true, silent = true })
+
+-- vim.api.nvim_set_keymap("n", "<leader>w\\", ":vsplit<CR>", { noremap = true, silent = true })
+-- vim.api.nvim_del_keymap("n", "<leader>w|")
+--
 -- vim.keymap.del({ "n", "v" }, "s")
+--
+--
+--
+-- vim.api.nvim_set_keymap("n", "<leader>cx", "<Cmd>lua vim.lsp.codelens.run()<CR>", {})
