@@ -90,7 +90,7 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git docker docker-compose direnv poetry)
+plugins=(git docker docker-compose direnv dotenv poetry)
  # zsh-vi-mode
 
 source $ZSH/oh-my-zsh.sh
@@ -166,15 +166,45 @@ source $ZSH/oh-my-zsh.sh
 
 alias vpn="sudo openconnect -u sehe1342 --no-xmlpost vpn.colorado.edu/nso"
 
+alias backup-local="rsync -a --exclude-from=$HOME/code/.gitignore ~/code/ ~/Desktop/code"
+alias backup-remote="rsync -a ~/Desktop/code/ sean@208.83.226.9:~/code"
 
-# Automatically back up code folder every time you split!
-now=$(date +"%Y-%m-%d %H:%M")
-last=$(cat ~/.backup)
-if [ $now != $last ]; then
-    rsync -a --exclude-from=$HOME/code/.gitignore ~/code/ ~/Desktop/code
-    echo "$now" > ~/.backup
-    echo "BACKUP ~/code at $now"
+LAST_BACKUP="$HOME/.backup"
+if [[ ! -f $LAST_BACKUP ]]; then
+    echo "NONE" > $LAST_BACKUP
 fi
+
+datetime=$(date +"%Y-%m-%d %H:%M")
+last="$(cat $LAST_BACKUP)"
+if [ $datetime != $last ]; then
+    backup-local
+    echo "BACKUP ~/code at $datetime > $LAST_BACKUP"
+    echo "$datetime" > $LAST_BACKUP
+fi
+
+LAST_BACKUP_REMOTE="$HOME/.remote.backup"
+if [[ ! -f $LAST_BACKUP_REMOTE ]]; then
+    echo "NONE" > $LAST_BACKUP_REMOTE
+fi
+
+today=$(date +"%Y-%m-%d")
+last="$(cat $LAST_BACKUP_REMOTE)"
+if [ $today != $last ]; then
+    backup-remote
+    echo "BACKUP REMOTE"
+    echo "$today" > $LAST_BACKUP_REMOTE
+fi
+
+# today=$(date +"%Y-%m-%d")
+# last=$(cat ~/.remote.backup)
+# if [ $today != $last ]; then
+#     backup-remote
+#     echo "$today" > ~/.remote.backup
+#     echo "REMOTE BACKUP ~/code at $today"
+# fi
+#
+# alias backup-init="echo $datetime > ~/.backup && echo $today > ~/.remote.backup"
+
 
 # elif  [[ $arch == arm* ]]; then
 #   echo "M1"
@@ -186,7 +216,6 @@ fi
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 
-alias backup-remote="rsync -a ~/Desktop/code/ sean@208.83.226.9:~/code"
 
 
 # Automatically activate Python virtual environments
