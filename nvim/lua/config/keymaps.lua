@@ -5,6 +5,7 @@ wk.register({
   ["<leader>ce"] = { ht.lsp.buf_eval_all, "Eval All CodeLenses" },
 
   ["<leader>hr"] = { ht.lsp.restart, "HLS Restart" },
+  ["<leader>hs"] = { ht.hoogle.hoogle_signature, "Hoogle Signature" },
 
   ["<leader>en"] = {
     function()

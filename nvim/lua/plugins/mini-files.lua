@@ -16,7 +16,7 @@ return {
         -- reset = "<BS>",
         -- reveal_cwd = "@",
         -- show_help = "g?",
-        -- synchronize = "=",
+        synchronize = " ",
         -- trim_left = "<",
         -- trim_right = ">",
       },
