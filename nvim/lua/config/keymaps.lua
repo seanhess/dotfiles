@@ -1,5 +1,6 @@
 local wk = require("which-key")
 local ht = require("haskell-tools")
+local ts = require("telescope.builtin")
 
 wk.register({
   ["<leader>ce"] = { ht.lsp.buf_eval_all, "Eval All CodeLenses" },
@@ -19,6 +20,8 @@ wk.register({
     end,
     "Error Next",
   },
+
+  ["<leader><space>"] = { ts.find_files, "Find Files" },
 }, { noremap = true, silent = true })
 
 -- vim.keymap.set("n", "<leader>ce", vim.lsp.codelens.run, { noremap = true })

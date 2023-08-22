@@ -178,7 +178,7 @@ datetime=$(date +"%Y-%m-%d %H:%M")
 last="$(cat $LAST_BACKUP)"
 if [ $datetime != $last ]; then
     backup-local
-    echo "BACKUP ~/code at $datetime > $LAST_BACKUP"
+    echo "BACKUP ($datetime)"
     echo "$datetime" > $LAST_BACKUP
 fi
 
@@ -191,7 +191,7 @@ today=$(date +"%Y-%m-%d")
 last="$(cat $LAST_BACKUP_REMOTE)"
 if [ $today != $last ]; then
     backup-remote
-    echo "BACKUP REMOTE"
+    echo "BACKUP REMOTE ($today)"
     echo "$today" > $LAST_BACKUP_REMOTE
 fi
 
