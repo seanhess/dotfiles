@@ -2,6 +2,25 @@ local wk = require("which-key")
 local ht = require("haskell-tools")
 local ts = require("telescope.builtin")
 
+local opts = { noremap = true, silent = true }
+local all = { "n", "i", "v" }
+--
+vim.keymap.set(all, "<C-h>", "<ESC><C-w>h", opts)
+vim.keymap.set(all, "<C-j>", "<ESC><C-w>j", opts)
+vim.keymap.set(all, "<C-k>", "<ESC><C-w>k", opts)
+vim.keymap.set(all, "<C-l>", "<ESC><C-w>l", opts)
+
+-- https://github.com/Vigemus/iron.nvim/issues/93
+vim.keymap.set("t", "<C-h>", "<C-\\><C-N><C-w>h", opts)
+vim.keymap.set("t", "<C-j>", "<C-\\><C-N><C-w>j", opts)
+vim.keymap.set("t", "<C-k>", "<C-\\><C-N><C-w>k", opts)
+vim.keymap.set("t", "<C-l>", "<C-\\><C-N><C-w>l", opts)
+
+-- vim.keymap.set(all, "<leader>t", function()
+--   print("real lua function")
+--   vim.cmd("vsplit")
+-- end, opts)
+--
 wk.register({
   ["<leader>ce"] = { ht.lsp.buf_eval_all, "Eval All CodeLenses" },
 
@@ -28,7 +47,18 @@ wk.register({
   },
 
   ["<leader><space>"] = { ts.find_files, "Find Files" },
-}, { noremap = true, silent = true })
+  -- Conflicts with which-key
+  -- ["<C-w><BS>"] = { "<ESC><C-w>q", "Quit a Window" },
+  --
+})
+
+wk.register({
+  ["q"] = {},
+  ["/"] = { "<ESC><C-w>v", "Split Vertical" },
+  ["_"] = { "<ESC><C-w>s", "Split Horizontal" },
+  ["w"] = { "<ESC><C-w>q", "Quit Window" },
+  ["<CR>"] = { ":tabnew %<CR>", "Zoom Window" },
+}, { prefix = "<C-w>", mode = { "i", "n", "v", "t" } })
 
 -- vim.keymap.set("n", "<leader>ce", vim.lsp.codelens.run, { noremap = true })
 
@@ -36,29 +66,7 @@ wk.register({
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 -- Add any additional keymaps here
 
--- Keymaps are automatically loaded on the VeryLazy event
--- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
--- Add any additional keymaps here
 -- Move to window using the <ctrl> hjkl keys
-
--- https://github.com/aserowy/tmux.nvim/issues/92
--- local Util = require("lazyvim.util")
--- local function map(mode, lhs, rhs, opts)
---   local keys = require("lazy.core.handler").handlers.keys
---   ---@cast keys LazyKeysHandler
---   -- do not create the keymap if a lazy keys handler exists
---   if not keys.active[keys.parse({ lhs, mode = mode }).id] th-en
---     opts = opts or {}
---     opts.silent = opts.silent ~= false
---     vim.keymap.set(mode, lhs, rhs, opts)
---   end
--- end
-
--- map("n", "<C-h>", "<cmd>lua require'tmux'.move_left()<cr>", { desc = "Go to left window" })
--- map("n", "<C-j>", "<cmd>lua require'tmux'.move_bottom()<cr>", { desc = "Go to lower window" })
--- map("n", "<C-k>", "<cmd>lua require'tmux'.move_top()<cr>", { desc = "Go to upper window" })
--- map("n", "<C-l>", "<cmd>lua require'tmux'.move_right()<cr>", { desc = "Go to right window" })
-
 -- vim.api.nvim_set_keymap("n", "<C-w>\\", ":vsplit<CR>", { noremap = true, silent = true })
 -- vim.api.nvim_set_keymap("n", "<C-w>-", ":split<CR>", { noremap = true, silent = true })
 --
