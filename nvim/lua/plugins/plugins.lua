@@ -1,12 +1,12 @@
 return {
 
-  { "luc-tielen/telescope_hoogle" },
-
   -- {
   --   "nvim-treesitter/nvim-treesitter",
   --   enabled = true,
+  --
   -- },
   --
+
   {
     "folke/flash.nvim",
     event = "VeryLazy",
@@ -56,30 +56,6 @@ return {
       },
     },
   },
-  {
-    "mrcjkb/haskell-tools.nvim",
-    dependencies = { "nvim-lua/plenary.nvim", "nvim-telescope/telescope.nvim" },
-    branch = "1.x.x",
-    opts = {
-      codeLens = {
-        -- Whether to automatically display/refresh codeLenses
-        -- (explicitly set to false to disable)
-        autoRefresh = true,
-      },
-      hls = { -- LSP client options
-        -- ...
-        default_settings = {
-          haskell = { -- haskell-language-server options
-            formattingProvider = "fourmolu",
-            -- formattingProvider = "none",
-            -- Setting this to true could have a performance impact on large mono repos.
-            checkProject = false,
-            ...,
-          },
-        },
-      },
-    },
-  },
 
   {
     "nvim-treesitter/nvim-treesitter",
@@ -102,6 +78,18 @@ return {
         "haskell",
       },
     },
+
+    {
+      "nvim-telescope/telescope.nvim",
+      opts = {
+        extensions = {
+          hoogle = {
+            render = "treesitter",
+          },
+        },
+      },
+    },
+    --
   },
 
   --
