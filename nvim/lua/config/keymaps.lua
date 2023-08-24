@@ -57,7 +57,11 @@ wk.register({
   ["/"] = { "<ESC><C-w>v", "Split Vertical" },
   ["_"] = { "<ESC><C-w>s", "Split Horizontal" },
   ["w"] = { "<ESC><C-w>q", "Quit Window" },
+  ["x"] = { "<ESC><C-w>q", "Quit Window" },
   ["<CR>"] = { ":tabnew %<CR>", "Zoom Window" },
+
+  -- Conflicts with go up one directory for which-key
+  -- ["<C-H>"] = { "<ESC><C-w>q", "Quit Window" },
 }, { prefix = "<C-w>", mode = { "i", "n", "v", "t" } })
 
 -- vim.keymap.set("n", "<leader>ce", vim.lsp.codelens.run, { noremap = true })
