@@ -4,8 +4,8 @@ return {
     opts = {
       windows = {
         preview = true,
-        width_focus = 50,
-        width_preview = 50,
+        width_focus = 40,
+        width_preview = 40,
       },
       mappings = {
         -- close = "q",
