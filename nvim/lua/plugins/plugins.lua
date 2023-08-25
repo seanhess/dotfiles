@@ -1,6 +1,21 @@
 return {
 
   {
+    "aserowy/tmux.nvim",
+    config = function()
+      return require("tmux").setup({
+        -- Enables default bindings. Default: true
+        navigation = {
+          -- Default: 'C-h'
+          cycle_navigation = true,
+          -- Default: 'C-%'
+          enable_default_keybindings = false,
+        },
+      })
+    end,
+  },
+
+  {
     "folke/todo-comments.nvim",
     opts = {
       keywords = {
@@ -172,20 +187,6 @@ return {
   --         width_nofocus = 1115,
   --         -- Width of preview window
   --         width_preview = 1125,
-  --       },
-  --     })
-  --   end,
-  -- },
-  -- {
-  --   "aserowy/tmux.nvim",
-  --   config = function()
-  --     return require("tmux").setup({
-  --       -- Enables default bindings. Default: true
-  --       navigation = {
-  --         -- Default: 'C-h'
-  --         cycle_navigation = true,
-  --         -- Default: 'C-%'
-  --         enable_default_keybindings = true,
   --       },
   --     })
   --   end,
