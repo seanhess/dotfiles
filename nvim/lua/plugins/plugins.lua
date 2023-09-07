@@ -16,6 +16,17 @@ return {
   },
 
   {
+    "echasnovski/mini.comment",
+    opts = {
+      mappings = {
+        comment = "g/",
+        comment_line = "g/",
+        textobject = "g/",
+      },
+    },
+  },
+
+  {
     "folke/todo-comments.nvim",
     opts = {
       keywords = {
