@@ -78,6 +78,8 @@ wk.register({
   },
 
   ["<space>"] = { ts.find_files, "Find Files" },
+
+  ["mp"] = { "<CMD>MarkdownPreview<CR>", "Markdown Preview" },
 }, { prefix = "<leader>" })
 
 wk.register({

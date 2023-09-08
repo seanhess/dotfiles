@@ -1,6 +1,16 @@
 return {
 
   {
+    "iamcco/markdown-preview.nvim",
+    build = "cd app && yarn install",
+    lazy = true,
+    init = function()
+      vim.g.mkdp_filetypes = { "markdown" }
+    end,
+    ft = { "markdown" },
+  },
+
+  {
     "aserowy/tmux.nvim",
     config = function()
       return require("tmux").setup({
@@ -31,6 +41,7 @@ return {
     opts = {
       keywords = {
         DONE = { icon = " ", color = "success" },
+        DOING = { icon = " ", color = "warning" },
         -- FIX = {
         --   icon = " ", -- icon used for the sign, and in search results
         --   color = "error", -- can be a hex color, or a named color (see below)

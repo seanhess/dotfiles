@@ -16,10 +16,17 @@ return {
               -- returns a table (see below)
               command = { "zsh" },
             },
+            haskell = {
+              command = function(meta)
+                local file = vim.api.nvim_buf_get_name(meta.current_bufnr)
+                -- call `require` in case iron is set up before haskell-tools
+                return require("haskell-tools").repl.mk_repl_cmd(file)
+              end,
+            },
           },
           -- How the repl window will be displayed
-          -- See below for more information
-          repl_open_cmd = require("iron.view").bottom(40),
+          -- repl_open_cmd = require("iron.view").bottom(40),
+          repl_open_cmd = view.split.vertical.botright(),
         },
         -- Iron doesn't set keymaps by default anymore.
         -- You can set them here or manually add keymaps to the functions in iron.core
