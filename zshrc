@@ -4,6 +4,8 @@
 
 # Default system PATH
 export PATH=~/.local/bin:/opt/homebrew/bin:/usr/bin:/bin:/usr/sbin:/sbin
+export PATH=/Applications/Docker.app/Contents/Resources/bin:$PATH
+export PATH=/opt/homebrew/opt/libpq/bin:$PATH
 
 # Detect architecture and change PATH accordingly
 # arch=$(arch)
