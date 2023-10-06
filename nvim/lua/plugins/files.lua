@@ -1,6 +1,6 @@
 return {
   { "nvim-telescope/telescope-file-browser.nvim" },
-  { "nvim-tree/nvim-web-devicons" },
+
   {
     "stevearc/oil.nvim",
     opts = {
@@ -31,7 +31,7 @@ return {
       },
       use_default_keymaps = false,
     },
-    -- Optional dependencies
+
     dependencies = { "nvim-tree/nvim-web-devicons" },
   },
 }

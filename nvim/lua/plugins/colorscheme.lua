@@ -1,14 +1,14 @@
 return {
 
   -- Configure LazyVim to load colorscheme
-  {
-    "LazyVim/LazyVim",
-    opts = {
-      -- colorscheme = "tokyonight",
-      colorscheme = "onedark",
-      -- colorscheme = "catppuccin",
-    },
-  },
+  -- {
+  --   "LazyVim/LazyVim",
+  --   opts = {
+  --     -- colorscheme = "tokyonight",
+  --     colorscheme = "onedark",
+  --     -- colorscheme = "catppuccin",
+  --   },
+  -- },
   -- add gruvbox
   -- { "ellisonleao/gruvbox.nvim" },
   { "folke/tokyonight.nvim", opts = { style = "moon" } },

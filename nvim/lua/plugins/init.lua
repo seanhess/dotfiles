@@ -36,72 +36,7 @@ return {
     },
   },
 
-  {
-    "folke/todo-comments.nvim",
-    opts = {
-      keywords = {
-        DONE = { icon = " ", color = "success" },
-        DOING = { icon = " ", color = "warning" },
-        -- FIX = {
-        --   icon = " ", -- icon used for the sign, and in search results
-        --   color = "error", -- can be a hex color, or a named color (see below)
-        --   alt = { "FIXME", "BUG", "FIXIT", "ISSUE" }, -- a set of other keywords that all map to this FIX keywords
-        --   -- signs = false, -- configure signs for some keywords individually
-        -- },
-        -- TODO = { icon = " ", color = "info" },
-        -- HACK = { icon = " ", color = "warning" },
-        -- WARN = { icon = " ", color = "warning", alt = { "WARNING", "XXX" } },
-        -- PERF = { icon = " ", alt = { "OPTIM", "PERFORMANCE", "OPTIMIZE" } },
-        -- NOTE = { icon = " ", color = "hint", alt = { "INFO" } },
-        -- TEST = { icon = "⏲ ", color = "test", alt = { "TESTING", "PASSED", "FAILED" } },
-      },
-      colors = {
-        success = { "#8BCD5B" }, -- matches theme
-        -- success = { "#4CBB17" },
-      },
-    },
-  },
 
-  {
-    "folke/which-key.nvim",
-    -- event = "VeryLazy",
-    -- init = function()
-    --   vim.o.timeout = true
-    --   vim.o.timeoutlen = 300
-    -- end,
-    opts = {
-      key_labels = {
-        -- override the label used to display some keys. It doesn't effect WK in any other way.
-        -- For example:
-        -- ["<space>"] = "SPC",
-        -- ["<cr>"] = "RET",
-        -- ["<tab>"] = "TAB",
-      },
-      -- your configuration comes here
-      -- or leave it empty to use the default settings
-      -- refer to the configuration section below
-    },
-  },
-
-  {
-    "folke/flash.nvim",
-    event = "VeryLazy",
-    enabled = true,
-    vscode = true,
-    ---@type Flash.Config
-    opts = {},
-    -- stylua: ignore
-    keys = function()
-        return {
-            { "s", false },
-            { ";", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
-            -- { "S", mode = { "n", "o", "x" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
-            -- { "r", mode = "o", function() require("flash").remote() end, desc = "Remote Flash" },
-            -- { "R", mode = { "o", "x" }, function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
-            -- { "<c-s>", mode = { "c" }, function() require("flash").toggle() end, desc = "Toggle Flash Search" },
-        }
-    end,
-  },
   { "echasnovski/mini.pairs", enabled = false },
   {
     "akinsho/bufferline.nvim",
