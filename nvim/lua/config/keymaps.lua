@@ -5,10 +5,14 @@ local tmux = require("tmux")
 
 vim.api.nvim_set_keymap("n", "Q", "<Nop>", { noremap = true, silent = true })
 
+vim.keymap.set("n", "-", "<CMD>Oil --float<CR>", { desc = "Open parent directory" })
+
 vim.keymap.del({ "n", "t" }, "<C-h>")
 vim.keymap.del({ "n", "t" }, "<C-j>")
 vim.keymap.del({ "n", "t" }, "<C-k>")
 vim.keymap.del({ "n", "t" }, "<C-l>")
+
+wk.
 
 function replicate5(func)
   func()
@@ -17,6 +21,10 @@ function replicate5(func)
   func()
   func()
 end
+
+-- wk.register({
+--   ["-"] = { "<CMD>Oil<CR>" },
+-- }, { mode = { "n", "v", "t" } })
 
 wk.register({
   ["<C-h>"] = { tmux.move_left, "Navigate Left" },
@@ -54,6 +62,8 @@ wk.register({
 
 wk.register({
   ["ce"] = { ht.lsp.buf_eval_all, "Eval All CodeLenses" },
+
+  ["q"] = { "bd", "Quit Buffer" },
 
   ["hr"] = { ht.lsp.restart, "HLS Restart" },
   -- ["<leader>hs"] = { ":Telescope hoogle<CR>", "Hoogle Search" },

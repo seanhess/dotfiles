@@ -107,8 +107,8 @@ return {
     "akinsho/bufferline.nvim",
     opts = {
       options = {
-        mode = "tabs",
-        close_command = "tabclose",
+        -- mode = "tabs",
+        -- close_command = "tabclose",
       },
     },
   },
