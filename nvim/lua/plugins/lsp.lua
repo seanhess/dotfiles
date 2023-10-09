@@ -25,18 +25,13 @@ return {
     -- event = "LazyFile",
     dependencies = {
       { "folke/neoconf.nvim", cmd = "Neoconf", config = false, dependencies = { "nvim-lspconfig" } },
-      { "folke/neodev.nvim", opts = {} },
+      { "folke/neodev.nvim",  opts = {} },
 
-      "LazyVim/LazyVim",
+      "lukas-reineke/lsp-format.nvim",
 
       "mason.nvim",
       "williamboman/mason-lspconfig.nvim",
-      {
-        "hrsh7th/cmp-nvim-lsp",
-        cond = function()
-          return require("lazyvim.util").has("nvim-cmp")
-        end,
-      },
+      "hrsh7th/cmp-nvim-lsp",
     },
     ---@class PluginLspOpts
     opts = {
@@ -118,30 +113,31 @@ return {
     },
     ---@param opts PluginLspOpts
     config = function(_, opts)
-      local Util = require("lazyvim.util")
+      -- local Util = require("lazyvim.util")
 
-      if Util.has("neoconf.nvim") then
-        local plugin = require("lazy.core.config").spec.plugins["neoconf.nvim"]
-        require("neoconf").setup(require("lazy.core.plugin").values(plugin, "opts", false))
-      end
+      local plugin = require("lazy.core.config").spec.plugins["neoconf.nvim"]
+      require("neoconf").setup(require("lazy.core.plugin").values(plugin, "opts", false))
+
+      local lsp_format = require("lsp-format")
+
       -- setup autoformat
-      require("plugins.lsp.format").setup(opts)
-      -- setup formatting and keymaps
-      Util.on_attach(function(client, buffer)
-        require("plugins.lsp.keymaps").on_attach(client, buffer)
-      end)
+      -- require("plugins.lsp.format").setup(opts)
+      -- -- setup formatting and keymaps
+      -- Util.on_attach(function(client, buffer)
+      --   require("plugins.lsp.keymaps").on_attach(client, buffer)
+      -- end)
 
-      local register_capability = vim.lsp.handlers["client/registerCapability"]
-
-      vim.lsp.handlers["client/registerCapability"] = function(err, res, ctx)
-        local ret = register_capability(err, res, ctx)
-        local client_id = ctx.client_id
-        ---@type lsp.Client
-        local client = vim.lsp.get_client_by_id(client_id)
-        local buffer = vim.api.nvim_get_current_buf()
-        require("plugins.lsp.keymaps").on_attach(client, buffer)
-        return ret
-      end
+      -- local register_capability = vim.lsp.handlers["client/registerCapability"]
+      --
+      -- vim.lsp.handlers["client/registerCapability"] = function(err, res, ctx)
+      --   local ret = register_capability(err, res, ctx)
+      --   local client_id = ctx.client_id
+      --   ---@type lsp.Client
+      --   local client = vim.lsp.get_client_by_id(client_id)
+      --   local buffer = vim.api.nvim_get_current_buf()
+      --   require("plugins.lsp.keymaps").on_attach(client, buffer)
+      --   return ret
+      -- end
 
       -- diagnostics
       -- for name, icon in pairs(require("lazyvim.config").icons.diagnostics) do
@@ -161,14 +157,14 @@ return {
 
       if type(opts.diagnostics.virtual_text) == "table" and opts.diagnostics.virtual_text.prefix == "icons" then
         opts.diagnostics.virtual_text.prefix = vim.fn.has("nvim-0.10.0") == 0 and "●"
-          or function(diagnostic)
-            -- local icons = require("lazyvim.config").icons.diagnostics
-            -- for d, icon in pairs(icons) do
-            --   if diagnostic.severity == vim.diagnostic.severity[d:upper()] then
-            --     return icon
-            --   end
-            -- end
-          end
+            or function(diagnostic)
+              -- local icons = require("lazyvim.config").icons.diagnostics
+              -- for d, icon in pairs(icons) do
+              --   if diagnostic.severity == vim.diagnostic.severity[d:upper()] then
+              --     return icon
+              --   end
+              -- end
+            end
       end
 
       vim.diagnostic.config(vim.deepcopy(opts.diagnostics))
@@ -197,6 +193,7 @@ return {
             return
           end
         end
+        server_opts["on_attach"] = lsp_format.on_attach
         require("lspconfig")[server].setup(server_opts)
       end
 
@@ -224,13 +221,13 @@ return {
         mlsp.setup({ ensure_installed = ensure_installed, handlers = { setup } })
       end
 
-      if Util.lsp_get_config("denols") and Util.lsp_get_config("tsserver") then
-        local is_deno = require("lspconfig.util").root_pattern("deno.json", "deno.jsonc")
-        Util.lsp_disable("tsserver", is_deno)
-        Util.lsp_disable("denols", function(root_dir)
-          return not is_deno(root_dir)
-        end)
-      end
+      -- if Util.lsp_get_config("denols") and Util.lsp_get_config("tsserver") then
+      --   local is_deno = require("lspconfig.util").root_pattern("deno.json", "deno.jsonc")
+      --   Util.lsp_disable("tsserver", is_deno)
+      --   Util.lsp_disable("denols", function(root_dir)
+      --     return not is_deno(root_dir)
+      --   end)
+      -- end
     end,
   },
 
@@ -287,4 +284,8 @@ return {
       end
     end,
   },
+
+  { "williamboman/mason-lspconfig.nvim" },
+  { "hrsh7th/cmp-nvim-lsp" },
+  { "lukas-reineke/lsp-format.nvim" },
 }
