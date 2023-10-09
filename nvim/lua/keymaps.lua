@@ -4,10 +4,10 @@ local ht = require("haskell-tools")
 local ts = require("telescope.builtin")
 local tmux = require("tmux")
 
-vim.api.nvim_set_keymap("n", "Q", "<Nop>", { noremap = true, silent = true })
+-- vim.api.nvim_set_keymap("n", "Q", "<Nop>", { noremap = true, silent = true })
 
 -- vim.keymap.set("n", "-", "<CMD>Oil --float<CR>", { desc = "Open parent directory" })
-vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
+-- vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
 
 -- vim.keymap.del({ "n", "t" }, "<C-h>")
 -- vim.keymap.del({ "n", "t" }, "<C-j>")
@@ -65,7 +65,7 @@ wk.register({
 wk.register({
   ["ce"] = { ht.lsp.buf_eval_all, "Eval All CodeLenses" },
 
-  ["q"] = { "bd", "Quit Buffer" },
+  ["q"] = { "<CMD>bd<CR>", "Quit Buffer" },
 
   ["hr"] = { ht.lsp.restart, "HLS Restart" },
   -- ["<leader>hs"] = { ":Telescope hoogle<CR>", "Hoogle Search" },

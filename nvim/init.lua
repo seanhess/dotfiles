@@ -1,26 +1,4 @@
-vim.g.mapleader = " " -- Make sure to set `mapleader` before lazy so your mappings are correct
-
-vim.o.number = true
-
--- disable swap file
-vim.o.swapfile = false
--- disable backup
-vim.o.backup = false
--- disable creating a backup before overwriting a file
-vim.o.writebackup = false
-
--- reload files when edited externally
-vim.o.autoread = true
-vim.cmd([[autocmd FocusGained * :checktime]])
-
--- disable ex mode
-
-vim.o.expandtab = true -- Use spaces instead of tabs
-vim.o.shiftwidth = 2 -- Size of an indent
-vim.o.tabstop = 2 -- Number of spaces tabs count for
-vim.o.exrc = true
-vim.o.relativenumber = false
-
+require("options")
 -- save on exit buffer
 vim.api.nvim_create_autocmd({ "BufLeave", "FocusLost" }, {
   callback = function()
@@ -54,6 +32,7 @@ require("lazy").setup({
 })
 
 require("keymaps")
+require("autocmds")
 
 -- Set colorscheme
 vim.cmd([[colorscheme onedark]])
