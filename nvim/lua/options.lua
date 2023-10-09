@@ -1,5 +1,3 @@
-vim.g.mapleader = " " -- Make sure to set `mapleader` before lazy so your mappings are correct
-
 local opt = vim.opt
 
 -- Lazyvim settings: https://www.lazyvim.org/configuration/general
@@ -85,3 +83,7 @@ opt.backup = false -- disable backup
 opt.writebackup = false -- disable creating a backup before overwriting a file
 opt.relativenumber = false -- disable local line numbers
 opt.exrc = true -- allows local project config
+
+-- set colorscheme based on the colorscheme file
+local colors = require("plugins.colorscheme")
+vim.cmd(colors.active)

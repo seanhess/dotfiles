@@ -1,5 +1,8 @@
 return {
 
+  active = [[colorscheme onedark]],
+  -- active = [[colorscheme catppuccin]],
+
   -- Configure LazyVim to load colorscheme
   -- {
   --   "LazyVim/LazyVim",
@@ -42,3 +45,7 @@ return {
     },
   },
 }
+
+-- -- Set colorscheme
+-- vim.cmd([[colorscheme onedark]])
+-- -- vim.cmd([[colorscheme catppuccin]])
