@@ -38,15 +38,7 @@ return {
 
 
   { "echasnovski/mini.pairs", enabled = false },
-  {
-    "akinsho/bufferline.nvim",
-    opts = {
-      options = {
-        -- mode = "tabs",
-        -- close_command = "tabclose",
-      },
-    },
-  },
+
   {
     "echasnovski/mini.surround",
     opts = {
