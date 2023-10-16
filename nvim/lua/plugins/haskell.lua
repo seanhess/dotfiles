@@ -8,7 +8,10 @@ vim.g.haskell_tools = {
     mode = "telescope-local",
   },
   hls = { -- LSP client options
-    -- on_attach = function(client, bufnr, ht)
+    on_attach = function(client, bufnr, ht)
+      -- auto format
+      require("lsp-format").on_attach(client, bufnr)
+    end,
     --   print("ATTACH", ht.default_settings.haskell)
     -- end,
     default_settings = {
@@ -34,7 +37,7 @@ return {
 
   {
     "mrcjkb/haskell-tools.nvim",
-    dependencies = { "nvim-lua/plenary.nvim", "nvim-telescope/telescope.nvim", "luc-tielen/telescope_hoogle" },
+    dependencies = { "nvim-lua/plenary.nvim", "nvim-telescope/telescope.nvim", "luc-tielen/telescope_hoogle", "lukas-reineke/lsp-format.nvim" },
     branch = "2.x.x",
   },
 }

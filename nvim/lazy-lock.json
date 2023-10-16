@@ -15,6 +15,7 @@
   "haskell-tools.nvim": { "branch": "2.x.x", "commit": "b19df600da8ef5fb4fb280815415ebd2a4228f0f" },
   "indent-blankline.nvim": { "branch": "master", "commit": "877c1db2bf957300097dd5348a665666a4d900cb" },
   "iron.nvim": { "branch": "master", "commit": "7f876ee3e1f4ea1e5284b1b697cdad5b256e8046" },
+  "kiwi.nvim": { "branch": "master", "commit": "358da6992e246b7eb5c3bc2f23cc9a64189ef9af" },
   "lazy.nvim": { "branch": "main", "commit": "5579d72576b21b9c8c2d01838598aece5dc2be6d" },
   "lsp-format.nvim": { "branch": "master", "commit": "e8782a5468a4849ae440a1531be559d85aebe142" },
   "lualine.nvim": { "branch": "master", "commit": "45e27ca739c7be6c49e5496d14fcf45a303c3a63" },

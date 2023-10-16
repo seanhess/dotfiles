@@ -53,7 +53,7 @@ return {
       -- Be aware that you also will need to properly configure your LSP server to
       -- provide the inlay hints.
       inlay_hints = {
-        enabled = false,
+        enabled = true,
       },
       -- add any global capabilities here
       capabilities = {},
@@ -69,6 +69,8 @@ return {
       -- LSP Server Settings
       ---@type lspconfig.options
       servers = {
+
+        -- typescript = {},
 
         pyright = {
           autoImportCompletion = true,
@@ -147,23 +149,23 @@ return {
 
       local inlay_hint = vim.lsp.buf.inlay_hint or vim.lsp.inlay_hint
 
-      if opts.inlay_hints.enabled and inlay_hint then
-        Util.on_attach(function(client, buffer)
-          if client.supports_method("textDocument/inlayHint") then
-            inlay_hint(buffer, true)
-          end
-        end)
-      end
+      -- if opts.inlay_hints.enabled and inlay_hint then
+      --   Util.on_attach(function(client, buffer)
+      --     if client.supports_method("textDocument/inlayHint") then
+      --       inlay_hint(buffer, true)
+      --     end
+      --   end)
+      -- end
 
       if type(opts.diagnostics.virtual_text) == "table" and opts.diagnostics.virtual_text.prefix == "icons" then
         opts.diagnostics.virtual_text.prefix = vim.fn.has("nvim-0.10.0") == 0 and "●"
             or function(diagnostic)
-              -- local icons = require("lazyvim.config").icons.diagnostics
-              -- for d, icon in pairs(icons) do
-              --   if diagnostic.severity == vim.diagnostic.severity[d:upper()] then
-              --     return icon
-              --   end
-              -- end
+              local icons = require("lazyvim.config").icons.diagnostics
+              for d, icon in pairs(icons) do
+                if diagnostic.severity == vim.diagnostic.severity[d:upper()] then
+                  return icon
+                end
+              end
             end
       end
 
@@ -220,6 +222,8 @@ return {
       if have_mason then
         mlsp.setup({ ensure_installed = ensure_installed, handlers = { setup } })
       end
+
+      require("lspconfig").tsserver.setup({})
 
       -- if Util.lsp_get_config("denols") and Util.lsp_get_config("tsserver") then
       --   local is_deno = require("lspconfig.util").root_pattern("deno.json", "deno.jsonc")

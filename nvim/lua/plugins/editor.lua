@@ -229,7 +229,11 @@ return {
     event = "VeryLazy",
     vscode = true,
     ---@type Flash.Config
-    opts = {},
+    opts = {
+      modes = {
+        search = { enabled = false }
+      }
+    },
     -- stylua: ignore
     keys = {
       -- Why did I want to disable s?

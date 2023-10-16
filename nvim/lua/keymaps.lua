@@ -23,7 +23,6 @@ function replicate5(func)
   func()
 end
 
-
 -- wk.register({
 --   ["-"] = { "<CMD>Oil<CR>" },
 -- }, { mode = { "n", "v", "t" } })
@@ -62,6 +61,8 @@ wk.register({
   },
 
   ["<C-q>"] = { "<ESC><C-w>q", "Quit Window" },
+
+  ["gd"] = { function() require("telescope.builtin").lsp_definitions({ reuse_win = true }) end, "Goto Definition" },
 })
 
 -- Window Commands
@@ -110,8 +111,15 @@ wk.register({
   [","] = { harpoon.toggle_quick_menu, "Harpoon" },
   -- ["hn"] = { harpoon.nav_next, "Harpoon Next" },
   -- ["hp"] = { harpoon.nav_prev, "Harpoon Prev" },
-  ["hh"] = { harpoon.nav_prev, "Harpoon Next" },
+  -- ["hn"] = { harpoon.nav_next, "Harpoon Next" },
+  -- ["hp"] = { harpoon.nav_prev, "Harpoon Prev" },
+  ["hh"] = { harpoon.nav_prev, "Harpoon Back" },
+  ["hl"] = { harpoon.toggle_quick_menu, "Harpoon" },
+  -- ["hh"] = { harpoon.toggle_quick_menu, "Harpoon Next" },
+  --
+  -- ["ww"] = { require('kiwi').open_wiki_index, "Open Wiki Index" },
+  -- ["wt"] = { require('kiwi').todo.toggle, "Toggle Markdown Task" }
+
+
 
 }, { prefix = "<leader>" })
-
-
