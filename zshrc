@@ -7,6 +7,8 @@ export PATH=~/.local/bin:/opt/homebrew/bin:/usr/bin:/bin:/usr/sbin:/sbin
 export PATH=/Applications/Docker.app/Contents/Resources/bin:$PATH
 export PATH=/opt/homebrew/opt/libpq/bin:$PATH
 
+export TERM=xterm-256color
+
 # Detect architecture and change PATH accordingly
 # arch=$(arch)
 # echo "Arch: $arch"
@@ -169,7 +171,7 @@ source $ZSH/oh-my-zsh.sh
 alias vpn="sudo openconnect -u sehe1342 --no-xmlpost vpn.colorado.edu/nso"
 
 alias backup-local="rsync -a --exclude-from=$HOME/code/.gitignore ~/code/ ~/Desktop/code"
-alias backup-remote="rsync -a ~/Desktop/code/ sean@208.83.226.9:~/code"
+alias backup-remote="rsync -av --exclude-from=$HOME/code/.gitignore ~/Desktop/code/ sean@208.83.226.9:~/code"
 
 LAST_BACKUP="$HOME/.backup"
 if [[ ! -f $LAST_BACKUP ]]; then
