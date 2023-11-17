@@ -165,6 +165,12 @@ return {
     "echasnovski/mini.comment",
     event = "VeryLazy",
     opts = {
+      mappings = {
+        comment = "g/",
+        comment_line = "g/",
+        comment_visual = "g/",
+        textobject = "g/",
+      },
       options = {
         custom_commentstring = function()
           return require("ts_context_commentstring.internal").calculate_commentstring() or vim.bo.commentstring
