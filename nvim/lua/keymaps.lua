@@ -4,6 +4,7 @@ local ht = require("haskell-tools")
 local ts = require("telescope.builtin")
 local tmux = require("tmux")
 local harpoon = require("harpoon.ui")
+require("telescope").load_extension('harpoon')
 
 -- vim.api.nvim_set_keymap("n", "Q", "<Nop>", { noremap = true, silent = true })
 
@@ -28,11 +29,6 @@ end
 -- }, { mode = { "n", "v", "t" } })
 
 wk.register({
-  ["<C-h>"] = { tmux.move_left, "Navigate Left" },
-  ["<C-j>"] = { tmux.move_down, "Navigate Down" },
-  ["<C-k>"] = { tmux.move_up, "Navigate Up" },
-  ["<C-l>"] = { tmux.move_right, "Navigate Right" },
-
   ["<C-s>"] = { "<CMD>w<CR>", "Save Buffer" },
 
   ["<C-S-h>"] = {
@@ -107,14 +103,15 @@ wk.register({
 
   ["mp"] = { "<CMD>MarkdownPreview<CR>", "Markdown Preview" },
 
+  ["hh"] = { harpoon.toggle_quick_menu, "Harpoon" },
   ["ha"] = { require("harpoon.mark").add_file, "Harpoon Add File" },
-  [","] = { harpoon.toggle_quick_menu, "Harpoon" },
+  [","] = { "<CMD>Telescope harpoon marks<CR>", "Harpoon" },
   -- ["hn"] = { harpoon.nav_next, "Harpoon Next" },
   -- ["hp"] = { harpoon.nav_prev, "Harpoon Prev" },
-  -- ["hn"] = { harpoon.nav_next, "Harpoon Next" },
-  -- ["hp"] = { harpoon.nav_prev, "Harpoon Prev" },
-  ["hh"] = { harpoon.nav_prev, "Harpoon Back" },
-  ["hl"] = { harpoon.toggle_quick_menu, "Harpoon" },
+  ["hn"] = { harpoon.nav_next, "Harpoon Next" },
+  ["hp"] = { harpoon.nav_prev, "Harpoon Prev" },
+  -- ["hp"] = { harpoon.nav_prev, "Harpoon Back" },
+  -- ["hl"] = { harpoon.toggle_quick_menu, "Harpoon" },
   -- ["hh"] = { harpoon.toggle_quick_menu, "Harpoon Next" },
   --
   -- ["ww"] = { require('kiwi').open_wiki_index, "Open Wiki Index" },
