@@ -19,21 +19,10 @@ return {
           -- Default: 'C-h'
           cycle_navigation = true,
           -- Default: 'C-%'
-          enable_default_keybindings = false,
+          enable_default_keybindings = true,
         },
       })
     end,
-  },
-
-  {
-    "echasnovski/mini.comment",
-    opts = {
-      mappings = {
-        comment = "g/",
-        comment_line = "g/",
-        textobject = "g/",
-      },
-    },
   },
 
 
