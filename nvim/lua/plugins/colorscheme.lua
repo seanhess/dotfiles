@@ -41,9 +41,12 @@ return {
       highlights = {
         ["Visual"] = { bg = "#474B5E" },
         ["@comment"] = { fg = "#666666" },
+        -- ["CurSearch"] = { bg = '$green' },
+        ["Search"] = { bg = "#5E5E5E", fg = "clear" },
       },
     },
   },
+
 }
 
 -- -- Set colorscheme

@@ -4,6 +4,7 @@ local ht = require("haskell-tools")
 local ts = require("telescope.builtin")
 local tmux = require("tmux")
 local harpoon = require("harpoon.ui")
+local telescope = require("telescope.builtin")
 require("telescope").load_extension('harpoon')
 
 -- vim.api.nvim_set_keymap("n", "Q", "<Nop>", { noremap = true, silent = true })
@@ -86,18 +87,9 @@ wk.register({
     "Hoogle Search",
   },
 
-  ["en"] = {
-    function()
-      vim.diagnostic.goto_next({ severity = vim.lsp.protocol.DiagnosticSeverity.Error })
-    end,
-    "Error Next",
-  },
-  ["e?"] = {
-    function()
-      vim.diagnostic.goto_prev({ severity = vim.lsp.protocol.DiagnosticSeverity.Error })
-    end,
-    "Error Next",
-  },
+  ["dd"] = { telescope.diagnostics, "All Diagnostics" },
+  ["de"] = { function() telescope.diagnostics({ severity = vim.lsp.protocol.DiagnosticSeverity.Error }) end, "Errors" },
+  ["dw"] = { function() telescope.diagnostics({ severity = vim.lsp.protocol.DiagnosticSeverity.Warning }) end, "Warnings" },
 
   ["<space>"] = { ts.find_files, "Find Files" },
 
@@ -120,3 +112,14 @@ wk.register({
 
 
 }, { prefix = "<leader>" })
+
+
+wk.register({
+  ["]e"] = { function() vim.diagnostic.goto_next({ severity = vim.lsp.protocol.DiagnosticSeverity.Error }) end,
+    "Error Next" },
+  ["[e"] = { function() vim.diagnostic.goto_prev({ severity = vim.lsp.protocol.DiagnosticSeverity.Error }) end,
+    "Error Prev" },
+
+  ["]d"] = { vim.diagnostic.goto_next, "Diagnostic Next" },
+  ["[d"] = { vim.diagnostic.goto_prev, "Diagnostic Prev" },
+}, { mode = { "n" } })
