@@ -1,7 +1,7 @@
 return {
 
-  active = [[colorscheme onedark]],
-  -- active = [[colorscheme catppuccin]],
+  -- active = [[colorscheme onedark]],
+  active = [[colorscheme catppuccin]],
 
   -- Configure LazyVim to load colorscheme
   -- {
@@ -42,7 +42,7 @@ return {
         ["Visual"] = { bg = "#474B5E" },
         ["@comment"] = { fg = "#666666" },
         -- ["CurSearch"] = { bg = '$green' },
-        ["Search"] = { bg = "#5E5E5E", fg = "clear" },
+        ["Search"] = { bg = "#4E4E4E", fg = "clear" },
       },
     },
   },

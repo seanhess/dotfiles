@@ -229,3 +229,6 @@ eval "$(pyenv virtualenv-init -)"
 #     source "venv/bin/activate";
 # fi
 
+
+function thunderbolts () {ssh -t "shess@10.224.180.34" "tmux attach || tmux new";}
+

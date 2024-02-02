@@ -28,3 +28,6 @@ __pycache__/
 *.egg
 
 # rsync -a 
+
+# Data directories
+scan1807
