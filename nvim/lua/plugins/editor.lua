@@ -240,6 +240,15 @@ return {
       end
 
       return {
+        pickers = {
+          buffers = {
+            sort_lastused = true,
+            -- sort_mru = true,
+            -- hide the current one from the list
+            -- ignore_current_buffer = true
+            --{sort_mru}
+          }
+        },
         defaults = {
           prompt_prefix = " ",
           selection_caret = " ",

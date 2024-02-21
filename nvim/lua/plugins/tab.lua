@@ -1,12 +1,12 @@
 -- https://github.com/LUIDWIGI/pepijn-vim/blob/main/lua/plugins/autocompletion.lua
 return {
 
-  {
-    "L3MON4D3/LuaSnip",
-    keys = function()
-      return {}
-    end,
-  },
+  -- {
+  --   "L3MON4D3/LuaSnip",
+  --   keys = function()
+  --     return {}
+  --   end,
+  -- },
 
   {
     "hrsh7th/nvim-cmp",
@@ -21,7 +21,7 @@ return {
         return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
       end
 
-      local luasnip = require("luasnip")
+      -- local luasnip = require("luasnip")
       local cmp = require("cmp")
       opts.sources = cmp.config.sources(vim.list_extend(opts.sources, { { name = "emoji" } }))
 
@@ -34,10 +34,10 @@ return {
         ["<Tab>"] = cmp.mapping(function(fallback)
           if cmp.visible() then
             cmp.select_next_item()
-          -- You could replace the expand_or_jumpable() calls with expand_or_locally_jumpable()
-          -- they way you will only jump inside the snippet region
-          elseif luasnip.expand_or_jumpable() then
-            luasnip.expand_or_jump()
+            -- You could replace the expand_or_jumpable() calls with expand_or_locally_jumpable()
+            -- they way you will only jump inside the snippet region
+            -- elseif luasnip.expand_or_jumpable() then
+            --   luasnip.expand_or_jump()
           elseif has_words_before() then
             cmp.complete()
           else
@@ -47,8 +47,8 @@ return {
         ["<S-Tab>"] = cmp.mapping(function(fallback)
           if cmp.visible() then
             cmp.select_prev_item()
-          elseif luasnip.jumpable(-1) then
-            luasnip.jump(-1)
+            -- elseif luasnip.jumpable(-1) then
+            --   luasnip.jump(-1)
           else
             fallback()
           end

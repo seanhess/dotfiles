@@ -1,10 +1,10 @@
 return {
-  {
-    "ThePrimeagen/harpoon",
-    opts = {
-      global_settings = {
-        tabline = true
-      }
-    }
-  }
+  -- {
+  --   "ThePrimeagen/harpoon",
+  --   opts = {
+  --     global_settings = {
+  --       tabline = true
+  --     }
+  --   }
+  -- }
 }

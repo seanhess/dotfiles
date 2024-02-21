@@ -25,6 +25,9 @@ vim.g.haskell_tools = {
             codeActionsOn = true,
             diagnosticsOn = true,
           },
+          stan = {
+            globalOn = false,
+          }
         }, -- don't
       },
     },
@@ -37,7 +40,8 @@ return {
 
   {
     "mrcjkb/haskell-tools.nvim",
-    dependencies = { "nvim-lua/plenary.nvim", "nvim-telescope/telescope.nvim", "luc-tielen/telescope_hoogle", "lukas-reineke/lsp-format.nvim" },
+    dependencies = { "nvim-lua/plenary.nvim", "nvim-telescope/telescope.nvim", "luc-tielen/telescope_hoogle",
+      "lukas-reineke/lsp-format.nvim" },
     branch = "2.x.x",
   },
 }
