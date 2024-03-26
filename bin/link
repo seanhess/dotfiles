@@ -1,0 +1,13 @@
+#!/bin/bash
+
+cd ~
+
+# Install Homebrew and Oh My ZSH first!
+ln -s code/dotfiles/tmux .tmux.conf
+ln -s code/dotfiles/ghci .ghci
+ln -s code/dotfiles/gitconfig .gitconfig
+ln -s code/dotfiles/zshrc .zshrc
+
+cd ~/config
+ln -s ../code/dotfiles/kitty
+ln -s ../code/dotfiles/nvim
