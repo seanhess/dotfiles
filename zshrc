@@ -165,7 +165,7 @@ source $ZSH/oh-my-zsh.sh
 # fi
 #
 
-[ -f "/Users/shess/.ghcup/env" ] && source "/Users/shess/.ghcup/env" # ghcup-env
+[ -f "/Users/seanhess/.ghcup/env" ] && source "/Users/seanhess/.ghcup/env" # ghcup-env
 
 
 alias vpn="sudo openconnect -u sehe1342 --no-xmlpost vpn.colorado.edu/nso"
@@ -206,13 +206,13 @@ fi
 #     echo "$today" > ~/.remote.backup
 #     echo "REMOTE BACKUP ~/code at $today"
 # fi
-#
+#
 # alias backup-init="echo $datetime > ~/.backup && echo $today > ~/.remote.backup"
 
 
 # elif  [[ $arch == arm* ]]; then
 #   echo "M1"
-#   export PATH=$HOME/bin:$HOME/.local/bin:$HOME/.ghcup/bin:/opt/homebrew/bin:$HOME/.cargo/bin:$PATH
+#   export PATH=$HOME/bin:$HOME/.local/bin:$HOME/.ghcupbin:/opt/homebrew/bin:$HOME/.cargo/bin:$PATH
 #   [ -f "/Users/sean/.ghcup/env" ] && source "/Users/sean/.ghcup/env" # ghcup-env
 # fi
 #
