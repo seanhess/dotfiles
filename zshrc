@@ -1,8 +1,5 @@
-# If you come from bash you might have to change your $PATH.
 
-
-
-# Default system PATH
+# -- PATH ---------------------------------------
 export PATH=~/.local/bin:/opt/homebrew/bin:/usr/bin:/bin:/usr/sbin:/sbin
 export PATH=/Applications/Docker.app/Contents/Resources/bin:$PATH
 export PATH=/opt/homebrew/opt/libpq/bin:$PATH
@@ -95,88 +92,33 @@ ZSH_THEME="robbyrussell"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git docker docker-compose direnv dotenv poetry)
- # zsh-vi-mode
 
 source $ZSH/oh-my-zsh.sh
 
-# User configuration
-
-# export MANPATH="/usr/local/man:$MANPATH"
-
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-
-# export LDFLAGS="-L/usr/local/opt/llvm/lib"
-# export CPPFLAGS="-I/usr/local/opt/llvm/include"
-# export LDFLAGS="-L/opt/homebrew/opt/llvm@13/lib"
-# export CPPFLAGS="-I/opt/homebrew/opt/llvm@13/include"
-# export LDFLAGS="-L/usr/local/opt/llvm@12/lib"
-# export CPPFLAGS="-I/usr/local/opt/llvm@12/include"
-# export LDFLAGS="-L/opt/homebrew/opt/llvm@12/lib"
-# export CPPFLAGS="-I/opt/homebrew/opt/llvm@12/include"
-
-
-# [ -f "/Users/sean/.ghcup/env" ] && source "/Users/sean/.ghcup/env" # ghcup-env
-
-# alias python="python3"
-# alias pip="pip3"
+if [[ -n $SSH_CONNECTION ]]; then
+  export EDITOR='vim'
+else
+  export EDITOR='mvim'
+fi
 
 
 
-### Fix for making Docker plugin work
-# autoload -U compinit && compinit
-#
-#
-
-## ARCHITECTURE SWITCH
-# alias ros="echo '-> x86_64' && arch -x86_64 zsh"
-
-## Detect architecture and change PATH accordingly
-## - belongs at top of file
-# arch=$(arch)
-# echo "Arch: $arch"
-# if [[ $arch == x86_64* ]] || [[ $arch == i*86 ]]; then
-#   echo "Rosetta"
-#   export PATH=/usr/local/bin:$HOME/.local/bin86:$PATH
-# 
-# elif  [[ $arch == arm* ]]; then
-#   echo "M1"
-#   export PATH=$HOME/bin:$HOME/.local/bin:$HOME/.ghcup/bin:/opt/homebrew/bin:$HOME/.cargo/bin:$PATH
-#   [ -f "/Users/sean/.ghcup/env" ] && source "/Users/sean/.ghcup/env" # ghcup-env
-# fi
-#
 
 [ -f "$HOME/.ghcup/env" ] && source "$HOME/.ghcup/env" # ghcup-env
 
 
 GIT_INNER="'.git\/.'"
 alias backup-local="rsync -av --exclude-from=$HOME/code/.gitignore ~/code/ ~/Desktop/code/ | grep -v $GIT_INNER"
-# alias backup-remote="rsync -av --exclude-from=$HOME/code/.gitignore ~/code/ sean@208.83.226.9:~/code/"
-alias backup-remote="echo \"backup-remote Disabled\"" # rsync -av --exclude-from=$HOME/code/.gitignore ~/code/ sean@208.83.226.9:~/code/"
+alias backup-remote="rsync -av --exclude-from=$HOME/code/.gitignore ~/code/ sean@208.83.226.9:~/code/ | grep -v $GIT_INNER"
 
+# -- BACKUP LOCAL ---------------------------------
 LAST_BACKUP="$HOME/.backup"
 if [[ ! -f $LAST_BACKUP ]]; then
     echo "NONE" > $LAST_BACKUP
 fi
+
 
 datetime=$(date +"%Y-%m-%d %H:%M")
 last="$(cat $LAST_BACKUP)"
@@ -186,6 +128,7 @@ if [ $datetime != $last ]; then
     echo "$datetime" > $LAST_BACKUP
 fi
 
+# -- BACKUP REMOTE -----------------------------------
 LAST_BACKUP_REMOTE="$HOME/.remote.backup"
 if [[ ! -f $LAST_BACKUP_REMOTE ]]; then
     echo "NONE" > $LAST_BACKUP_REMOTE
@@ -199,37 +142,10 @@ if [ $today != $last ]; then
     echo "$today" > $LAST_BACKUP_REMOTE
 fi
 
-# today=$(date +"%Y-%m-%d")
-# last=$(cat ~/.remote.backup)
-# if [ $today != $last ]; then
-#     backup-remote
-#     echo "$today" > ~/.remote.backup
-#     echo "REMOTE BACKUP ~/code at $today"
-# fi
-#
-# alias backup-init="echo $datetime > ~/.backup && echo $today > ~/.remote.backup"
-
-
-# elif  [[ $arch == arm* ]]; then
-#   echo "M1"
-#   export PATH=$HOME/bin:$HOME/.local/bin:$HOME/.ghcupbin:/opt/homebrew/bin:$HOME/.cargo/bin:$PATH
-#   [ -f "/Users/sean/.ghcup/env" ] && source "/Users/sean/.ghcup/env" # ghcup-env
-# fi
-#
 
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 
 
 
-# Automatically activate Python virtual environments
-# this will only happen when creating a new session
-#
-# if [ -e "venv/bin/activate" ]; then
-#     source "venv/bin/activate";
-# fi
-
-
 function thunderbolts () {ssh -t "shess@10.224.180.34" "tmux attach || tmux new";}
-
-# TEST
