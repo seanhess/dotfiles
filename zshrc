@@ -109,9 +109,11 @@ fi
 [ -f "$HOME/.ghcup/env" ] && source "$HOME/.ghcup/env" # ghcup-env
 
 
-GIT_INNER="'.git\/.'"
-alias backup-local="rsync -av --exclude-from=$HOME/code/.gitignore ~/code/ ~/Desktop/code/ | grep -v $GIT_INNER"
-alias backup-remote="rsync -av --exclude-from=$HOME/code/.gitignore ~/code/ sean@208.83.226.9:~/code/ | grep -v $GIT_INNER"
+GIT_INNER=".git\/."
+RSYNC_IGNORE="^sent\|^total\|^building file list"
+BACKUP_HIDE="$GIT_INNER\|$RSYNC_IGNORE"
+alias backup-local="rsync -av --exclude-from=$HOME/code/.gitignore ~/code/ ~/Desktop/code/ | grep -v '$BACKUP_HIDE'"
+alias backup-remote="rsync -av --exclude-from=$HOME/code/.gitignore ~/code/ sean@208.83.226.9:~/code/ | grep -v '$BACKUP_HIDE'"
 
 # -- BACKUP LOCAL ---------------------------------
 LAST_BACKUP="$HOME/.backup"
