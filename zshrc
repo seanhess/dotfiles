@@ -168,7 +168,6 @@ source $ZSH/oh-my-zsh.sh
 [ -f "$HOME/.ghcup/env" ] && source "$HOME/.ghcup/env" # ghcup-env
 
 
-
 alias backup-local="rsync -av --exclude-from=$HOME/code/.gitignore ~/code/ ~/Desktop/code/ | grep -v '\/\.git\/'"# 
 # alias backup-remote="rsync -av --exclude-from=$HOME/code/.gitignore ~/code/ sean@208.83.226.9:~/code/"
 alias backup-remote="echo \"backup-remote Disabled\"" # rsync -av --exclude-from=$HOME/code/.gitignore ~/code/ sean@208.83.226.9:~/code/"
