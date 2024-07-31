@@ -16,7 +16,7 @@ venv
 *.dyn_o
 *.dyn_hi
 
-.git
+packagedb
 
 
 .ipynb_checkpoints/

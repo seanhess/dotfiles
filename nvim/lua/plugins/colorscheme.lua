@@ -14,7 +14,6 @@ return {
   -- },
   -- add gruvbox
   -- { "ellisonleao/gruvbox.nvim" },
-  { "folke/tokyonight.nvim", opts = { style = "moon" } },
 
   {
     "catppuccin/nvim",
@@ -22,9 +21,10 @@ return {
     priority = 1000,
     -- latte, frappe, macchiato, mocha
     opts = {
-      flavour = "latte",
+      -- flavour = "latte",
+      flavour = "macchiato",
+
       -- flavour = "frappe",
-      -- flavour = "macchiato",
       -- flavour = "mocha"
     },
   },
