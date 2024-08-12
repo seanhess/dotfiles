@@ -1,14 +1,5 @@
 return {
 
-  {
-    "iamcco/markdown-preview.nvim",
-    build = "cd app && yarn install",
-    lazy = true,
-    init = function()
-      vim.g.mkdp_filetypes = { "markdown" }
-    end,
-    ft = { "markdown" },
-  },
 
   {
     "aserowy/tmux.nvim",

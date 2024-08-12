@@ -1,5 +1,25 @@
 return {
   {
+    "OXY2DEV/markview.nvim",
+    lazy = false,
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter",
+      "nvim-tree/nvim-web-devicons"
+    }
+  },
+
+
+  {
+    "iamcco/markdown-preview.nvim",
+    build = "cd app && yarn install",
+    lazy = true,
+    init = function()
+      vim.g.mkdp_filetypes = { "markdown" }
+    end,
+    ft = { "markdown" },
+  },
+
+  {
     "epwalsh/obsidian.nvim",
     version = "*", -- recommended, use latest release instead of latest commit
     lazy = true,
@@ -22,18 +42,27 @@ return {
         {
           name = "dungeon world",
           path = "~/Dropbox/Dungeon World UT",
+        },
+
+        {
+          name = "City of Mist",
+          path = "~/Dropbox/City of Mist",
         }
       },
+
+
+      note_id_func = function(title)
+        return title
+      end,
 
       -- see below for full list of options 👇
     },
   },
 
-  {
-    "lukas-reineke/headlines.nvim",
-    dependencies = "nvim-treesitter/nvim-treesitter",
-    config = true, -- or `opts = {}`
-  },
+  -- {
+  --   "lukas-reineke/headlines.nvim",
+  --   dependencies = "nvim-treesitter/nvim-treesitter",
+  --   config = true, -- or `opts = {}`
+  -- },
 
-  { "kevinhwang91/nvim-ufo" }
 }

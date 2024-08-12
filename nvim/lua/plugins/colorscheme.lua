@@ -21,8 +21,8 @@ return {
     priority = 1000,
     -- latte, frappe, macchiato, mocha
     opts = {
-      -- flavour = "latte",
-      flavour = "macchiato",
+      flavour = "latte",
+      -- flavour = "macchiato",
 
       -- flavour = "frappe",
       -- flavour = "mocha"
