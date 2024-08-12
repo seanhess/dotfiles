@@ -332,13 +332,6 @@ return {
     end,
   },
 
-  -- which-key helps you remember key bindings by showing a popup
-  -- with the active keybindings of the command you started typing.
-  {
-    "folke/which-key.nvim",
-    event = "VeryLazy",
-    opts = {}
-  },
 
   -- git signs highlights text that has changed since the list
   -- git commit, and also lets you interactively stage & unstage
