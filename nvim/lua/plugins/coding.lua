@@ -85,13 +85,13 @@ return {
   },
 
   -- comments
-  {
-    "JoosepAlviste/nvim-ts-context-commentstring",
-    lazy = true,
-    opts = {
-      enable_autocmd = false,
-    },
-  },
+  -- {
+  --   "JoosepAlviste/nvim-ts-context-commentstring",
+  --   lazy = true,
+  --   opts = {
+  --     enable_autocmd = false,
+  --   },
+  -- },
   {
     "echasnovski/mini.comment",
     event = "VeryLazy",
@@ -102,11 +102,11 @@ return {
         comment_visual = "g/",
         textobject = "g/",
       },
-      options = {
-        custom_commentstring = function()
-          return require("ts_context_commentstring.internal").calculate_commentstring() or vim.bo.commentstring
-        end,
-      },
+      -- options = {
+      --   custom_commentstring = function()
+      --     return require("ts_context_commentstring.internal").calculate_commentstring() or vim.bo.commentstring
+      --   end,
+      -- },
     },
   },
 }

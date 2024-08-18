@@ -23,35 +23,42 @@ return {
       { "<leader>q",  "<CMD>bd<CR>",                             desc = "Quit Buffer" },
       { "<leader>hr", require("haskell-tools").lsp.restart,      desc = "HLS Restart" },
       {
-        "<leader>hs",
-        function()
-          require("telescope").extensions.hoogle.hoogle()
-        end,
-        desc = "Hoogle Search",
-      },
-      {
-        "<leader>dd",
-        require("telescope.builtin").diagnostics,
-        desc =
-        "All Diagnostics"
-      },
-      {
-        "<leader>de",
-        function()
-          require("telescope.builtin").diagnostics({ severity = vim.lsp.protocol.DiagnosticSeverity.Error })
-        end,
-        desc = "Errors"
-      },
-      {
-        "<leader>dw",
-        function()
-          require("telescope.builtin").diagnostics({ severity = vim.lsp.protocol.DiagnosticSeverity.Warning })
-        end,
-        desc = "Warnings"
+        group = "LSP",
+        -- {
+        --   "<leader>hs",
+        --   function()
+        --     require("telescope").extensions.hoogle.hoogle()
+        --   end,
+        --   desc = "Hoogle Search",
+        -- },
+        {
+          "<leader>lr",
+          desc = "LSP Restart",
+          vim.lsp.restart
+        },
+        {
+          "<leader>ld",
+          desc = "Diagnostics",
+          require("telescope.builtin").diagnostics,
+        },
+        {
+          "<leader>le",
+          desc = "Errors",
+          function()
+            require("telescope.builtin").diagnostics({ severity = vim.lsp.protocol.DiagnosticSeverity.Error })
+          end,
+        },
+        {
+          "<leader>lw",
+          desc = "Warnings",
+          function()
+            require("telescope.builtin").diagnostics({ severity = vim.lsp.protocol.DiagnosticSeverity.Warning })
+          end,
+        },
       },
       { "<leader><space>", require("telescope.builtin").find_files, desc = "Find Files" },
-      { "<leader>mp",      "<CMD>MarkdownPreview<CR>",              desc = "Markdown Preview" },
       { "<leader>bb",      require("telescope.builtin").buffers,    desc = "All Buffers" },
+      { "<leader>mp",      "<CMD>MarkdownPreview<CR>",              desc = "Markdown Preview" },
       {
         mode = { "n", "v" }, -- NORMAL and VISUAL mode
         {
