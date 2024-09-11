@@ -36,29 +36,43 @@ return {
           desc = "LSP Restart",
           vim.lsp.restart
         },
+
+      },
+      {
+        group = "Telescope",
         {
-          "<leader>ld",
+          "<leader>td",
           desc = "Diagnostics",
           require("telescope.builtin").diagnostics,
         },
         {
-          "<leader>le",
-          desc = "Errors",
+          "<leader>te",
+          desc = "Erors",
           function()
             require("telescope.builtin").diagnostics({ severity = vim.lsp.protocol.DiagnosticSeverity.Error })
           end,
         },
         {
-          "<leader>lw",
+          "<leader>tw",
           desc = "Warnings",
           function()
             require("telescope.builtin").diagnostics({ severity = vim.lsp.protocol.DiagnosticSeverity.Warning })
           end,
         },
+        {
+          "<leader>tt",
+          ":TodoTelescope<CR>",
+          desc = "TODOs",
+        },
       },
       { "<leader><space>", require("telescope.builtin").find_files, desc = "Find Files" },
       { "<leader>bb",      require("telescope.builtin").buffers,    desc = "All Buffers" },
       { "<leader>mp",      "<CMD>MarkdownPreview<CR>",              desc = "Markdown Preview" },
+
+      {
+        mode = { "i" },
+        { "<C-p>", "<C-r>", desc = "Paste Register" }
+      },
       {
         mode = { "n", "v" }, -- NORMAL and VISUAL mode
         {

@@ -18,6 +18,7 @@ brew install pyenv pyenv-virtualenv
 brew install tmux
 brew install sqlx-cli
 brew install watchexec
+brew install postgresql
 ```
 
 

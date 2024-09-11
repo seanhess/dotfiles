@@ -40,8 +40,7 @@ return {
 
   {
     "mrcjkb/haskell-tools.nvim",
-    dependencies = { "nvim-lua/plenary.nvim", "nvim-telescope/telescope.nvim", "luc-tielen/telescope_hoogle",
-      "lukas-reineke/lsp-format.nvim" },
-    branch = "2.x.x",
+    version = '^4', -- Recommended
+    lazy = false,   -- This plugin is already lazy
   },
 }

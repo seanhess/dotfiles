@@ -28,7 +28,7 @@ return {
     cmd = { "TSUpdateSync" },
     keys = {
       { "<c-space>", desc = "Increment selection" },
-      { "<bs>", desc = "Decrement selection", mode = "x" },
+      { "<bs>",      desc = "Decrement selection", mode = "x" },
     },
     ---@type TSConfig
     opts = {
@@ -38,6 +38,7 @@ return {
         "bash",
         "c",
         "html",
+        "haskell",
         "javascript",
         "jsdoc",
         "json",
