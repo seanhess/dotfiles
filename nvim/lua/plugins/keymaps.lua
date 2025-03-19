@@ -18,6 +18,7 @@ return {
     -- Nested mappings don't work in the maps list above!
     wk.add({
 
+      { "//",         "<CMD>noh<CR>",                            desc = "Clear Search Highlight" },
       { "<C-s>",      "<CMD>w<CR>",                              desc = "Save Buffer" },
       { "<leader>ce", require("haskell-tools").lsp.buf_eval_all, desc = "Eval All CodeLenses" },
       { "<leader>q",  "<CMD>bd<CR>",                             desc = "Quit Buffer" },
@@ -91,6 +92,14 @@ return {
         },
         { "]d", desc = "Diagnostic Next", vim.diagnostic.goto_next },
         { "[d", desc = "Diagnostic Prev", vim.diagnostic.goto_prev },
+
+        {
+          "gd",
+          desc = "Goto Definition",
+          function()
+            require("telescope.builtin").lsp_definitions({ reuse_win = true })
+          end,
+        },
       },
       {
         mode = { "i", "n", "v", "t" },
@@ -131,13 +140,6 @@ return {
           end,
         },
         { "<C-q>", "<ESC><C-w>q", desc = "Quit Window" },
-        {
-          "gd",
-          desc = "Goto Definition",
-          function()
-            require("telescope.builtin").lsp_definitions({ reuse_win = true })
-          end,
-        },
       }
     })
   end

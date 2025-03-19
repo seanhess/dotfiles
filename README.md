@@ -19,6 +19,7 @@ brew install tmux
 brew install sqlx-cli
 brew install watchexec
 brew install postgresql
+brew install fd
 ```
 
 

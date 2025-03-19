@@ -70,7 +70,7 @@ return {
       ---@type lspconfig.options
       servers = {
 
-        -- typescript = {},
+        ts_ls = {},
 
         pyright = {
           autoImportCompletion = true,
@@ -223,7 +223,7 @@ return {
         mlsp.setup({ ensure_installed = ensure_installed, handlers = { setup } })
       end
 
-      require("lspconfig").tsserver.setup({})
+      -- require("lspconfig").tsserver.setup({})
 
       -- if Util.lsp_get_config("denols") and Util.lsp_get_config("tsserver") then
       --   local is_deno = require("lspconfig.util").root_pattern("deno.json", "deno.jsonc")

@@ -1,12 +1,12 @@
 vim.g.haskell_tools = {
-  codeLens = {
-    -- Whether to automatically display/refresh codeLenses
-    -- (explicitly set to false to disable)
-    autoRefresh = true,
-  },
-  hoogle = {
-    mode = "telescope-local",
-  },
+  -- codeLens = {
+  --   -- Whether to automatically display/refresh codeLenses
+  --   -- (explicitly set to false to disable)
+  --   autoRefresh = true,
+  -- },
+  -- hoogle = {
+  --   mode = "telescope-local",
+  -- },
   hls = { -- LSP client options
     on_attach = function(client, bufnr, ht)
       -- auto format

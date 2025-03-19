@@ -1,6 +1,5 @@
 return {
 
-  -- active = [[colorscheme onedark]],
   active = [[colorscheme catppuccin]],
 
   -- Configure LazyVim to load colorscheme
@@ -23,7 +22,6 @@ return {
     opts = {
       flavour = "latte",
       -- flavour = "macchiato",
-
       -- flavour = "frappe",
       -- flavour = "mocha"
     },

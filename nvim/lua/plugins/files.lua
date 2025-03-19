@@ -61,7 +61,7 @@ return {
 
       local show_dotfiles = true
       local filter_show = function(fs_entry)
-        return true
+        return not fs_entry.name == ".DS_Store"
       end
       local filter_hide = function(fs_entry)
         return not vim.startswith(fs_entry.name, ".")
