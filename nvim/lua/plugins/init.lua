@@ -19,6 +19,21 @@ return {
 
   { "echasnovski/mini.pairs", enabled = false },
 
+  -- {
+  --   "echasnovski/mini.animate",
+  --   version = '*',
+  --   config = function()
+  --     local animate = require('mini.animate')
+  --     local fast = animate.gen_timing.linear({ duration = 100, unit = 'total' })
+  --     return animate.setup({
+  --       resize = { enable = false },
+  --       open = { enable = false },
+  --       cursor = { timing = fast },
+  --       scroll = { enable = false, timing = fast }
+  --     })
+  --   end
+  -- },
+
   {
     "echasnovski/mini.surround",
     opts = {

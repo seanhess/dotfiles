@@ -1,4 +1,8 @@
 return {
+  {
+    'dnlhc/glance.nvim',
+    cmd = 'Glance'
+  },
   -- Better `vim.notify()`
   {
     "rcarriga/nvim-notify",
