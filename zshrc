@@ -113,7 +113,7 @@ GIT_INNER=".git\/."
 RSYNC_IGNORE="^sent\|^total\|^building file list"
 BACKUP_HIDE="$GIT_INNER\|$RSYNC_IGNORE"
 alias backup-local="rsync -av --exclude-from=$HOME/code/.gitignore ~/code/ ~/Desktop/code/ | grep -v '$BACKUP_HIDE'"
-alias backup-remote="rsync -av --exclude-from=$HOME/code/.gitignore ~/code/ sean@208.83.226.9:~/code/ | grep -v '$BACKUP_HIDE'"
+alias backup-remote="rsync -av --exclude-from=$HOME/code/.gitignore ~/code/ sean@soardata.org:~/code/ | grep -v '$BACKUP_HIDE'"
 
 # -- BACKUP LOCAL ---------------------------------
 LAST_BACKUP="$HOME/.backup"
@@ -151,6 +151,14 @@ eval "$(pyenv virtualenv-init -)"
 
 
 function thunderbolts () {ssh -t "shess@10.224.180.34" "tmux attach || tmux new";}
+
+function fits() {
+  input_file="$1"
+  if [[ -z "$input_file" ]]; then
+    input_file="$(fd .fits | sort | head -n 1)"
+  fi
+  fold -w 80 "$input_file" | bat
+}
 
 # # Nix
 # if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then

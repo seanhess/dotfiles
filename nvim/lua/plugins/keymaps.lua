@@ -3,6 +3,7 @@ local finders = require("telescope.finders")
 local conf = require("telescope.config").values
 
 local function replicate5(func)
+  print("HI")
   func()
   func()
   func()
@@ -203,35 +204,35 @@ return {
         { "<C-w>w",    "<ESC><C-w>q",   desc = "Quit Window" },
         { "<C-w><BS>", "<ESC><C-w>q",   desc = "Quit Window" },
         { "<C-w><CR>", ":tabnew %<CR>", desc = "Zoom Window" },
-        {
-          "<C-S-h>",
-          desc = "Resize Left",
-          function()
-            replicate5(require("tmux").resize_left)
-          end,
-        },
-        {
-          "<C-S-j>",
-          desc = "Resize Bottom",
-          function()
-            replicate5(require("tmux").resize_bottom)
-          end,
-        },
-        {
-          "<C-S-k>",
-          desc = "Resize Top",
-          function()
-            replicate5(require("tmux").resize_top)
-          end,
-        },
-        {
-          "<C-S-l>",
-          desc = "Resize Right",
-          function()
-            replicate5(require("tmux").resize_right)
-          end,
-        },
-        { "<C-q>", "<ESC><C-w>q", desc = "Quit Window" },
+        -- {
+        --   "<A-h>",
+        --   desc = "Resize Left",
+        --   function()
+        --     replicate5(require("tmux").resize_left)
+        --   end,
+        -- },
+        -- {
+        --   "<A-j>",
+        --   desc = "Resize Bottom",
+        --   function()
+        --     replicate5(require("tmux").resize_bottom)
+        --   end,
+        -- },
+        -- {
+        --   "<A-k>",
+        --   desc = "Resize Top",
+        --   function()
+        --     replicate5(require("tmux").resize_top)
+        --   end,
+        -- },
+        -- {
+        --   "<A-l>",
+        --   desc = "Resize Right",
+        --   function()
+        --     replicate5(require("tmux").resize_right)
+        --   end,
+        -- },
+        { "<C-q>",     "<ESC><C-w>q",   desc = "Quit Window" },
       },
       {
         mode = { "n", "v", "t" },
