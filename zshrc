@@ -4,7 +4,8 @@ export PATH=~/.local/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbi
 export PATH=/Applications/Docker.app/Contents/Resources/bin:$PATH
 export PATH=/opt/homebrew/opt/libpq/bin:$PATH
 
-export TERM=xterm-256color
+# export TERM=tmux-256color
+export COLORTERM=truecolor
 
 # Detect architecture and change PATH accordingly
 # arch=$(arch)
@@ -122,11 +123,12 @@ if [[ ! -f $LAST_BACKUP ]]; then
 fi
 
 
-datetime=$(date +"%Y-%m-%d %H:%M")
+datetime=$(date +"%Y-%m-%d %H")      # every hour
+# datetime=$(date +"%Y-%m-%d %H:%M") # every minute
 last="$(cat $LAST_BACKUP)"
 if [ $datetime != $last ]; then
-    backup-local
     echo "BACKUP ($datetime)"
+    backup-local
     echo "$datetime" > $LAST_BACKUP
 fi
 
@@ -136,7 +138,7 @@ if [[ ! -f $LAST_BACKUP_REMOTE ]]; then
     echo "NONE" > $LAST_BACKUP_REMOTE
 fi
 
-today=$(date +"%Y-%m-%d")
+today=$(date +"%Y-%m-%d")           # every day
 last="$(cat $LAST_BACKUP_REMOTE)"
 if [ $today != $last ]; then
     backup-remote
@@ -145,26 +147,19 @@ if [ $today != $last ]; then
 fi
 
 
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
+# TODO: slow!
+# eval "$(pyenv init -)"
+# eval "$(pyenv virtualenv-init -)"
 
 
 
-function thunderbolts () {ssh -t "shess@10.224.180.34" "tmux attach || tmux new";}
-
-function fits() {
-  input_file="$1"
-  if [[ -z "$input_file" ]]; then
-    input_file="$(fd .fits | sort | head -n 1)"
-  fi
-  fold -w 80 "$input_file" | bat
-}
-
-# # Nix
-# if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
-#   . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
-#   export PATH=/nix/var/nix/profiles/default/bin:$PATH
-# fi
+# function thunderbolts () {ssh -t "shess@10.224.180.34" "tmux attach || tmux new";}
 #
+# function fits() {
+#   input_file="$1"
+#   if [[ -z "$input_file" ]]; then
+#     input_file="$(fd .fits | sort | head -n 1)"
+#   fi
+#   fold -w 80 "$input_file" | bat
+# }
 
-# LLVM + OpenMP (for use with MilneEddington)
