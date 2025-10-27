@@ -1,0 +1,13 @@
+model = "gpt-5-codex"
+notify = ["/Users/seanhess/code/dotfiles/codex/notify.sh"]
+
+[projects."/Users/seanhess/code/dotfiles"]
+trust_level = "trusted"
+
+[projects."/Users/seanhess/code/level2"]
+trust_level = "trusted"
+
+
+# [tui]
+# # Available types are "agent-turn-complete" and "approval-requested".
+# notifications = [ "agent-turn-complete", "approval-requested" ]

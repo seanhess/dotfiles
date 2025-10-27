@@ -10,7 +10,7 @@ vim.g.haskell_tools = {
   hls = { -- LSP client options
     on_attach = function(client, bufnr, ht)
       -- auto format
-      require("lsp-format").on_attach(client, bufnr)
+      -- require("lsp-format").on_attach(client, bufnr)
     end,
     --   print("ATTACH", ht.default_settings.haskell)
     -- end,
@@ -19,7 +19,7 @@ vim.g.haskell_tools = {
         formattingProvider = "fourmolu",
         -- formattingProvider = "ormolu",
         -- Setting this to true could have a performance impact on large mono repos.
-        checkProject = true,
+        checkProject = false,
         plugin = {
           hlint = {
             codeActionsOn = true,

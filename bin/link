@@ -7,6 +7,7 @@ ln -s code/dotfiles/tmux .tmux.conf
 ln -s code/dotfiles/ghci .ghci
 ln -s code/dotfiles/gitconfig .gitconfig
 ln -s code/dotfiles/zshrc .zshrc
+ln -s code/dotfiles/codex.toml ~/.codex/config.toml
 
 cd ~/config
 ln -s ../code/dotfiles/kitty

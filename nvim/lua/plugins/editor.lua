@@ -521,6 +521,7 @@ return {
       },
       colors = {
         success = { "#8BCD5B" }, -- matches theme
+        info = { "#ff5ea0" },    -- cyber pink
         -- success = { "#4CBB17" },
       },
       -- stylua: ignore

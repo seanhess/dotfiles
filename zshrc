@@ -92,7 +92,7 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git docker docker-compose direnv poetry)
+plugins=(git docker docker-compose direnv)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -147,19 +147,15 @@ if [ $today != $last ]; then
 fi
 
 
-# TODO: slow!
-# eval "$(pyenv init -)"
-# eval "$(pyenv virtualenv-init -)"
 
 
+function thunderbolts () {ssh -t "shess@10.224.180.34" "tmux attach || tmux new";}
 
-# function thunderbolts () {ssh -t "shess@10.224.180.34" "tmux attach || tmux new";}
-#
-# function fits() {
-#   input_file="$1"
-#   if [[ -z "$input_file" ]]; then
-#     input_file="$(fd .fits | sort | head -n 1)"
-#   fi
-#   fold -w 80 "$input_file" | bat
-# }
+function fits() {
+  input_file="$1"
+  if [[ -z "$input_file" ]]; then
+    input_file="$(fd .fits | sort | head -n 1)"
+  fi
+  fold -w 80 "$input_file" | bat
+}
 

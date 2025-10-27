@@ -1,6 +1,6 @@
 return {
 
-  active = [[colorscheme catppuccin]],
+  active = [[colorscheme cyberdream]],
 
   -- Configure LazyVim to load colorscheme
   -- {
@@ -13,12 +13,34 @@ return {
   -- },
   -- add gruvbox
   -- { "ellisonleao/gruvbox.nvim" },
+  --
+  -- { "EdenEast/nightfox.nvim" },
+
+  {
+    -- https://github.com/scottmckendry/cyberdream.nvim
+    "scottmckendry/cyberdream.nvim",
+    lazy = false,
+    priority = 1000,
+    opts = {
+      variant = "dark",
+      italic_comments = true,
+      -- borderless_pickers = true,
+      -- https://github.com/scottmckendry/cyberdream.nvim/blob/main/lua/cyberdream/colors.lua
+      colors = {
+        blue = "#82B6FF",
+        cyan = "#82B6FF",
+        green = "#49cc55",
+      }
+    },
+  },
 
   {
     "catppuccin/nvim",
     name = "catppuccin",
     priority = 1000,
+    commit = "fa42eb5e26819ef58884257d5ae95dd0552b9a66",
     -- latte, frappe, macchiato, mocha
+
     opts = {
       flavour = "latte",
       -- flavour = "macchiato",
