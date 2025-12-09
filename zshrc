@@ -97,6 +97,17 @@ plugins=(git docker docker-compose direnv)
 source $ZSH/oh-my-zsh.sh
 
 
+# Show virtualenv prompts when activated from direnv
+# echo "source .venv/bin/activate" >> .envrc
+setopt PROMPT_SUBST
+
+show_virtual_env() {
+  if [[ -n "$VIRTUAL_ENV" && -n "$DIRENV_DIR" ]]; then
+    echo "($(basename $VIRTUAL_ENV))"
+  fi
+}
+PS1='$(show_virtual_env) '$PS1
+
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
   export EDITOR='vim'
