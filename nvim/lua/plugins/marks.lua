@@ -33,7 +33,10 @@ return {
         -- defaults to false.
         annotate = false,
       },
-      mappings = {},
+      mappings = {
+        toggle = false,
+        set_next = false
+      }
     },
   },
 }

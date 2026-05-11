@@ -16,6 +16,7 @@ venv
 *.hie
 *.dyn_o
 *.dyn_hi
+uv.lock
 
 packagedb
 
@@ -32,3 +33,10 @@ __pycache__/
 
 # Data directories
 scan1807
+u
+
+# Unimportant directories
+deps
+
+# Removing .git would make it WAAAAYYYY faster
+.git

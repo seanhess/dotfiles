@@ -72,7 +72,9 @@ local function bookmarks()
       results = bmarks,
       entry_maker = function(mark)
         local preview = get_line_preview(mark.file, mark.line)
-        local disp = string.format("%s %s:%d    %s", mark.mark, mark.file, mark.line, preview)
+        local filename = vim.fn.fnamemodify(mark.file, ":t")
+        -- local disp = string.format("%s %s:%d    %s", mark.mark, filename, mark.line, preview)
+        local disp = string.format("%s %s", mark.mark, preview)
         return {
           value = mark,
           display = disp,
@@ -88,6 +90,48 @@ local function bookmarks()
   }):find()
 end
 
+
+local function first_free_mark()
+  for c = 65, 90 do -- 'A'..'Z'
+    local mark = string.char(c)
+    local pos = vim.fn.getpos("'" .. mark)
+    if pos[2] == 0 and pos[3] == 0 then
+      return mark
+    end
+  end
+end
+
+local function current_mark()
+  local buf = vim.api.nvim_get_current_buf()
+  local line = vim.api.nvim_win_get_cursor(0)[1]
+
+  for c = 65, 90 do -- 'A'..'Z'
+    local mark = string.char(c)
+    local pos = vim.fn.getpos("'" .. mark)
+    local mark_buf, mark_line = pos[1], pos[2]
+
+    if mark_buf == buf and mark_line == line then
+      return mark
+    end
+  end
+end
+
+local function toggle_next_uppercase_mark()
+  local current = current_mark()
+  if current then
+    vim.cmd("delmarks " .. current)
+  else
+    local next = first_free_mark()
+    if next then
+      vim.cmd("normal! m" .. next)
+    else
+      print("No free uppercase marks!")
+    end
+  end
+end
+
+
+-- Optional: create your own mapping
 return {
   "folke/which-key.nvim",
   event = "VeryLazy",
@@ -99,6 +143,8 @@ return {
 
     -- Nested mappings don't work in the maps list above!
     wk.add({
+
+      { "mm",         toggle_next_uppercase_mark,                desc = "Set next uppercase mark" },
 
       { "//",         "<CMD>noh<CR>",                            desc = "Clear Search Highlight" },
       { "<C-s>",      "<CMD>w<CR>",                              desc = "Save Buffer" },
