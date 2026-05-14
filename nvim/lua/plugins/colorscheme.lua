@@ -1,6 +1,7 @@
 return {
 
   active = [[colorscheme cyberdream]],
+  -- active = [[colorscheme catppuccin]],
 
   -- Configure LazyVim to load colorscheme
   -- {

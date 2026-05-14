@@ -52,40 +52,40 @@ return {
     },
   },
 
-  {
-    "nvim-treesitter/nvim-treesitter",
-    opts = {
-      ensure_installed = {
-        "bash",
-        "html",
-        "javascript",
-        "json",
-        "lua",
-        "markdown",
-        "markdown_inline",
-        "python",
-        "query",
-        "regex",
-        -- "tsx",
-        "typescript",
-        -- "vim",
-        "yaml",
-        "haskell",
-      },
-    },
-
-    {
-      "nvim-telescope/telescope.nvim",
-      opts = {
-        extensions = {
-          hoogle = {
-            render = "treesitter",
-          },
-        },
-      },
-    },
-    --
-  },
+  -- {
+  --   "nvim-treesitter/nvim-treesitter",
+  --   opts = {
+  --     ensure_installed = {
+  --       "bash",
+  --       "html",
+  --       "javascript",
+  --       "json",
+  --       "lua",
+  --       "markdown",
+  --       "markdown_inline",
+  --       "python",
+  --       "query",
+  --       "regex",
+  --       -- "tsx",
+  --       "typescript",
+  --       -- "vim",
+  --       "yaml",
+  --       "haskell",
+  --     },
+  --   },
+  --
+  --   {
+  --     "nvim-telescope/telescope.nvim",
+  --     opts = {
+  --       extensions = {
+  --         hoogle = {
+  --           render = "treesitter",
+  --         },
+  --       },
+  --     },
+  --   },
+  --   --
+  -- },
 
   --
   --   version = false,

@@ -4,32 +4,33 @@ return {
   -- syntax highlighting.
   {
     "nvim-treesitter/nvim-treesitter",
-    version = false, -- last release is way too old and doesn't work on Windows
+    -- version = false, -- last release is way too old and doesn't work on Windows
+    branch = "main",
     build = ":TSUpdate",
     -- event = { "LazyFile", "VeryLazy" },
     event = { "VeryLazy" },
-    dependencies = {
-      {
-        "nvim-treesitter/nvim-treesitter-textobjects",
-        config = function()
-          -- Disable class keymaps in diff mode
-          vim.api.nvim_create_autocmd("BufReadPost", {
-            callback = function(event)
-              if vim.wo.diff then
-                for _, key in ipairs({ "[c", "]c", "[C", "]C" }) do
-                  pcall(vim.keymap.del, "n", key, { buffer = event.buf })
-                end
-              end
-            end,
-          })
-        end,
-      },
-    },
+    -- dependencies = {
+    --   {
+    --     "nvim-treesitter/nvim-treesitter-textobjects",
+    --     config = function()
+    --       -- Disable class keymaps in diff mode
+    --       vim.api.nvim_create_autocmd("BufReadPost", {
+    --         callback = function(event)
+    --           if vim.wo.diff then
+    --             for _, key in ipairs({ "[c", "]c", "[C", "]C" }) do
+    --               pcall(vim.keymap.del, "n", key, { buffer = event.buf })
+    --             end
+    --           end
+    --         end,
+    --       })
+    --     end,
+    --   },
+    -- },
     cmd = { "TSUpdateSync" },
-    keys = {
-      { "<c-space>", desc = "Increment selection" },
-      { "<bs>",      desc = "Decrement selection", mode = "x" },
-    },
+    -- keys = {
+    --   { "<c-space>", desc = "Increment selection" },
+    --   { "<bs>",      desc = "Decrement selection", mode = "x" },
+    -- },
     ---@type TSConfig
     opts = {
       highlight = { enable = true },
@@ -56,26 +57,26 @@ return {
         "vimdoc",
         "yaml",
       },
-      incremental_selection = {
-        enable = true,
-        keymaps = {
-          init_selection = "<C-space>",
-          node_incremental = "<C-space>",
-          scope_incremental = false,
-          node_decremental = "<bs>",
-        },
-      },
-      textobjects = {
-        move = {
-          enable = true,
-          goto_next_start = { ["]f"] = "@function.outer", ["]c"] = "@class.outer" },
-          goto_next_end = { ["]F"] = "@function.outer", ["]C"] = "@class.outer" },
-          goto_previous_start = { ["[f"] = "@function.outer", ["[c"] = "@class.outer" },
-          goto_previous_end = { ["[F"] = "@function.outer", ["[C"] = "@class.outer" },
-        },
-      },
+      -- incremental_selection = {
+      --   enable = true,
+      --   keymaps = {
+      --     init_selection = "<C-space>",
+      --     node_incremental = "<C-space>",
+      --     scope_incremental = false,
+      --     node_decremental = "<bs>",
+      --   },
+      -- },
+      -- textobjects = {
+      --   move = {
+      --     enable = true,
+      --     goto_next_start = { ["]f"] = "@function.outer", ["]c"] = "@class.outer" },
+      --     goto_next_end = { ["]F"] = "@function.outer", ["]C"] = "@class.outer" },
+      --     goto_previous_start = { ["[f"] = "@function.outer", ["[c"] = "@class.outer" },
+      --     goto_previous_end = { ["[F"] = "@function.outer", ["[C"] = "@class.outer" },
+      --   },
+      -- },
     },
-    ---@param opts TSConfig
+    -- ---@param opts TSConfig
     config = function(_, opts)
       if type(opts.ensure_installed) == "table" then
         ---@type table<string, boolean>
