@@ -1,41 +1,18 @@
 return {
-  -- Treesitter is a new parser generator tool that we can
-  -- use in Neovim to power faster and more accurate
-  -- syntax highlighting.
+  -- INSTALLATION - Install tree-sitter to CLI
+  -- brew install tree-sitter
+  -- brew install tree-sitter-cli
   {
     "nvim-treesitter/nvim-treesitter",
-    -- version = false, -- last release is way too old and doesn't work on Windows
-    branch = "main",
+    branch = "main", -- Explicitly stick to the modern rewrite branch
     build = ":TSUpdate",
-    -- event = { "LazyFile", "VeryLazy" },
-    event = { "VeryLazy" },
-    -- dependencies = {
-    --   {
-    --     "nvim-treesitter/nvim-treesitter-textobjects",
-    --     config = function()
-    --       -- Disable class keymaps in diff mode
-    --       vim.api.nvim_create_autocmd("BufReadPost", {
-    --         callback = function(event)
-    --           if vim.wo.diff then
-    --             for _, key in ipairs({ "[c", "]c", "[C", "]C" }) do
-    --               pcall(vim.keymap.del, "n", key, { buffer = event.buf })
-    --             end
-    --           end
-    --         end,
-    --       })
-    --     end,
-    --   },
-    -- },
-    cmd = { "TSUpdateSync" },
-    -- keys = {
-    --   { "<c-space>", desc = "Increment selection" },
-    --   { "<bs>",      desc = "Decrement selection", mode = "x" },
-    -- },
-    ---@type TSConfig
-    opts = {
-      highlight = { enable = true },
-      indent = { enable = true },
-      ensure_installed = {
+    lazy = false,    -- The main branch does not support lazy-loading
+    config = function()
+      -- 1. Initialize with default paths (no complex options table needed)
+      require('nvim-treesitter').setup()
+
+      -- 2. Declaratively list and install your desired language parsers
+      require('nvim-treesitter').install({
         "bash",
         "c",
         "html",
@@ -55,41 +32,17 @@ return {
         "typescript",
         "vim",
         "vimdoc",
-        "yaml",
-      },
-      -- incremental_selection = {
-      --   enable = true,
-      --   keymaps = {
-      --     init_selection = "<C-space>",
-      --     node_incremental = "<C-space>",
-      --     scope_incremental = false,
-      --     node_decremental = "<bs>",
-      --   },
-      -- },
-      -- textobjects = {
-      --   move = {
-      --     enable = true,
-      --     goto_next_start = { ["]f"] = "@function.outer", ["]c"] = "@class.outer" },
-      --     goto_next_end = { ["]F"] = "@function.outer", ["]C"] = "@class.outer" },
-      --     goto_previous_start = { ["[f"] = "@function.outer", ["[c"] = "@class.outer" },
-      --     goto_previous_end = { ["[F"] = "@function.outer", ["[C"] = "@class.outer" },
-      --   },
-      -- },
-    },
-    -- ---@param opts TSConfig
-    config = function(_, opts)
-      if type(opts.ensure_installed) == "table" then
-        ---@type table<string, boolean>
-        local added = {}
-        opts.ensure_installed = vim.tbl_filter(function(lang)
-          if added[lang] then
-            return false
-          end
-          added[lang] = true
-          return true
-        end, opts.ensure_installed)
-      end
-      require("nvim-treesitter.configs").setup(opts)
+        "yaml"
+      })
+
+      -- 3. Globally activate native Neovim syntax highlighting via core API
+      vim.api.nvim_create_autocmd("FileType", {
+        pattern = "*",
+        callback = function(args)
+          local lang = vim.treesitter.language.get_lang(vim.bo[args.buf].filetype) or vim.bo[args.buf].filetype
+          pcall(vim.treesitter.start, args.buf, lang)
+        end,
+      })
     end,
   },
 }
