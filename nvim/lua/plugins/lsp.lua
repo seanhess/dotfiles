@@ -5,7 +5,9 @@ return {
 
     opts = {
       formatters_by_ft = {
-        python = { "isort", "black" }
+        python = { "isort", "black" },
+        javascript = { "oxfmt" },
+        typescript = { "oxfmt" },
       },
       format_on_save = {
         -- fall back to lsp formatting
@@ -22,6 +24,7 @@ return {
     config = function(_, opts)
       vim.lsp.enable('lua_ls') -- lua
       vim.lsp.enable('ts_ls')  -- typescript
+      vim.lsp.enable('oxfmt')  -- js formatting
 
       -- Python
       -- vim.lsp.enable('jedi_language_server') -- codebase navigation (goto definition), refactoring, authocomplete

@@ -25,21 +25,21 @@ export SCALA_HOME="/Users/seanhess/local"
 export ELM_HOME="/usr/local/lib/node_modules/elm/share"
 
 # source ~/bin/git-completion.bash
-alias gs='git status'
-alias gc='git commit -m '
-alias gco='git co'
-alias gci='git ci'
-alias grb='git rb'
+# alias gs='git status'
+# alias gc='git commit -m '
+# alias gco='git co'
+# alias gci='git ci'
+# alias grb='git rb'
 alias vim='/Applications/MacVim.app/Contents/MacOS/Vim'
-alias postgres='/usr/local/bin/postgres -D /usr/local/var/postgres'
-alias kh="killall hdevtools"
+# alias postgres='/usr/local/bin/postgres -D /usr/local/var/postgres'
+# alias kh="killall hdevtools"
 #alias inkscape="/Applications/Inkscape.app/Contents/Resources/bin/inkscape"
 
-source ~/bin/services.sh
-source ~/bin/servers.sh
-source ~/bin/commands.sh
-source ~/bin/tunnels.sh
-source ~/.bash_private
+# source ~/bin/services.sh
+# source ~/bin/servers.sh
+# source ~/bin/commands.sh
+# source ~/bin/tunnels.sh
+# source ~/.bash_private
 # source ~/bin/z.sh
 
 # source ~/.nvm/nvm.sh
