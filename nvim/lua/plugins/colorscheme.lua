@@ -1,6 +1,7 @@
 return {
 
   active = [[colorscheme cyberdream]],
+  -- active = [[colorscheme onenord]],
   -- active = [[colorscheme catppuccin]],
 
   -- Configure LazyVim to load colorscheme
@@ -23,14 +24,21 @@ return {
     lazy = false,
     priority = 1000,
     opts = {
-      variant = "dark",
+      variant = "light",
+      -- variant = "dark",
       italic_comments = true,
       -- borderless_pickers = true,
       -- https://github.com/scottmckendry/cyberdream.nvim/blob/main/lua/cyberdream/colors.lua
       colors = {
-        blue = "#82B6FF",
-        cyan = "#82B6FF",
-        green = "#49cc55",
+        light = {
+          -- fg = "#FF0000",
+          bg_highlight = "#CCCCCC",
+        },
+        dark = {
+          blue = "#82B6FF",
+          cyan = "#82B6FF",
+          green = "#49cc55",
+        }
       }
     },
   },
@@ -48,6 +56,13 @@ return {
       -- flavour = "frappe",
       -- flavour = "mocha"
     },
+  },
+
+  {
+    "rmehri01/onenord.nvim",
+    opts = {
+      theme = "light",
+    }
   },
 
   {
