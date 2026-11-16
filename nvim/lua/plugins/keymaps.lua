@@ -131,6 +131,10 @@ local function toggle_next_uppercase_mark()
 end
 
 
+-- by default, in visual mode, paste would replace yanked test with selected text
+-- The P command (vs "p") does not do this. Replace "p" with "P"
+vim.keymap.set("x", "p", "P")
+
 -- Optional: create your own mapping
 return {
   "folke/which-key.nvim",

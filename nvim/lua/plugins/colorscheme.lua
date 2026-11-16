@@ -24,15 +24,16 @@ return {
     lazy = false,
     priority = 1000,
     opts = {
-      variant = "light",
-      -- variant = "dark",
+      -- variant = "light",
+      variant = "dark",
       italic_comments = true,
       -- borderless_pickers = true,
       -- https://github.com/scottmckendry/cyberdream.nvim/blob/main/lua/cyberdream/colors.lua
       colors = {
         light = {
           -- fg = "#FF0000",
-          bg_highlight = "#CCCCCC",
+          -- bg_highlight = "#C8C8C8",
+          bg_highlight = "#e0e0e0",
         },
         dark = {
           blue = "#82B6FF",
